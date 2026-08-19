@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .enlace-boton {
+    text-decoration: none;
+    color: inherit;
+    width: 24%; /* mismo ancho que .boton tenía antes */
+  }
+  
+  .enlace-boton .boton {
+    width: 100%; /* el boton ahora ocupa todo el <a> que lo contiene */
+  }
+  
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+  
+  .ventana {
+    width: 100%;
+    min-height: 100vh;
+    background: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .titulo-bienvenida {
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #555;
+    margin-left: 2%;
+  }
+  
+  .barra-titulo {
+    background: #a8a5a5;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    padding: 0 2%;
+    flex-shrink: 0;
+  }
+  
+  .circulo {
+    width: 1.6vw;
+    height: 1.6vw;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    background: #d9d9d9;
+  }
+  
+  .contenido {
+    flex: 1;
+    padding: 6% 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* esto empuja todo hacia el medio/abajo */
+    gap: 8vh; /* espacio entre el input y los botones */
+  }
+  
+  .campo-texto {
+    width: 100%;
+    height: 6vh;
+    background: #dcdcdc;
+    border: none;
+  }
+  
+  .fila-botones {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .boton {
+    width: 24%;
+    height: 12vh; /* botones más grandes */
+    background: #c4c4c4;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .pildora {
+      width: 65%;
+      height: 35%;
+      border-radius: 20px;
+      background: #dcdcdc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+      padding: 0 8px;
+  }

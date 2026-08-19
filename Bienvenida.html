@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenida</title>
-   
+  <meta charset="UTF-8">
+  <title>Ejemplo de ventana</title>
+
+  <!-- link conecta este HTML con el archivo de estilos externo -->
+  <link rel="stylesheet" href="Bienvenida.css">
 </head>
 <body>
-    <h1 id="Titulo"> Bienvenida</h1>
-    <a href="Iniciar-Sesion.html"> 
 
-        <button> Iniciar Sesion</button>
-    </a>
+  <!-- ===== HTML: acá va la estructura, el "esqueleto" de los elementos ===== -->
 
-    <a href="Crear-Cuenta.html">
+  <div class="ventana">
 
-        <button> Crear Cuenta</button>
-    </a>
-    <link rel="stylesheet" href="styles.css">
+    <!-- barra superior con el circulito, como el botón de cerrar de una ventana -->
+    <div class="barra-titulo">
+      <div class="circulo"></div>
+    </div>
+
+    <div class="contenido">
+
+      <!-- input real: "Bienvenida" aparece como texto de fondo, adentro del rectángulo -->
+      <input type="text" class="campo-texto" placeholder="Bienvenida" readonly>
+
+      <!-- fila con los dos botones -->
+      <div class="fila-botones">
+        <a href="Iniciar-Sesion.html" class="enlace-boton">
+          <div class="boton boton-izquierdo">
+            <div class="pildora">Iniciar Sesión</div>
+          </div>
+        </a>
+        <a href="Crear-Cuenta.html" class="enlace-boton">
+          <div class="boton boton-derecho">
+            <div class="pildora">Crear Cuenta</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- script va al final del body para que el HTML ya esté cargado cuando se ejecute -->
+  <script src="Bienvenida.js"></script>
+
 </body>
 </html>
