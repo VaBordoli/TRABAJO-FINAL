@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+  
+  .ventana {
+    width: 100%;
+    min-height: 100vh;
+    background: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .barra-titulo {
+    background: #a8a5a5;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    padding: 0 2%;
+    flex-shrink: 0;
+  }
+  
+  .circulo {
+    width: 1.6vw;
+    height: 1.6vw;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    background: #d9d9d9;
+  }
+  
+  .contenido {
+    flex: 1;
+    padding:  40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* espacio entre el input, los botones y el botón chico */
+  }
+  
+  .campo-texto {
+    width: 50%;
+    height: 6vh;
+    background: #dcdcdc;
+    border: none;
+  }
+  
+  /* columna: los dos botones apilados, uno debajo del otro, más angosta */
+  .columna-botones {
+    width: 30%; /* antes 100%, ahora más corta a lo ancho */
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+  
+  .enlace-boton {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+  
+  .enlace-boton .boton {
+    width: 100%;
+  }
+  
+  .boton {
+    width: 24%;
+    height: 12vh;
+    background: #c4c4c4;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .pildora {
+    width: 65%;
+    height: 50%;
+    border-radius: 20px;
+    background: #dcdcdc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+    text-align: center;
+    padding: 0 8px;
+  }
+  
+  .enlace-boton-chico {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .boton-chico {
+    display: block;
+    width: 150px;          /* ancho fijo y razonable, no 200% */
+    padding: 1.2vh 6%;
+    border-radius: 20px;
+    background: #a8a5a5;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: #444;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+  }
