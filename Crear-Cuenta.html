@@ -1,21 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
+  <meta charset="UTF-8">
+  <title>Ejemplo de ventana</title>
+
+  <!-- link conecta este HTML con el archivo de estilos externo -->
+  <link rel="stylesheet" href="Iniciar-Sesion.css">
 </head>
 <body>
-    <h1 id="Titulo"> Crear Cuenta</h1>
-    
-    <a href="Home.html">
-        <button> Registrarse</button>
-    </a>
 
-    <a href="Bienvenida.html">
-        <button> Regresar</button>
-    </a>
-    <link rel="stylesheet" href="styles.css">
+  <!-- ===== HTML: acá va la estructura, el "esqueleto" de los elementos ===== -->
+
+  <div class="ventana">
+
+    <!-- barra superior con el circulito, como el botón de cerrar de una ventana -->
+    <div class="barra-titulo">
+      <div class="circulo"></div>
+    </div>
+
+    <div class="contenido">
+            
+
+      <!-- input real: aparece como el rectángulo gris de arriba -->
+      <input type="text" class="campo-texto" placeholder="Crear Cuenta" readonly>
+            
+
+      <!-- columna con los dos botones grandes, uno arriba del otro -->
+      <div class="columna-botones">
+        
+        <a class="enlace-boton">
+          <div class="boton boton-superior">
+            <div class="pildora">
+              <input type="text" class="campo-texto" placeholder="Nombre de Usuario" >
+            </div>
+          </div>
+        </a>
+        
+        <a  class="enlace-boton">
+          <div class="boton boton-inferior">
+            <div class="pildora">
+              <input type="text" class="campo-texto" placeholder="Contraseña" >
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- botón pequeño, solo, centrado abajo -->
+      <a href="Home.html" class="enlace-boton-chico">
+        <div class="boton-chico">Continuar</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- script va al final del body para que el HTML ya esté cargado cuando se ejecute -->
+  <script src="Crear-Cuenta.js"></script>
+
 </body>
 </html>
