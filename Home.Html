@@ -1,23 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+  <meta charset="UTF-8">
+  <title>Pantalla de listas</title>
+  <link rel="stylesheet" href="Home.css">
 </head>
 <body>
-    <h1 id="Titulo"> Home</h1>
-    <a href="Campos.html">
-        <button> Ir a campos</button>
-    </a>
-    <a href="Perfil.html">
-        <button> Editar Perfil</button>
-    </a>
 
-    <a href="Bienvenida.html">
-        <button> Regresar a Bienvenida</button>
-    </a>
-    <link rel="stylesheet" href="styles.css">
+  <div class="ventana">
+
+    <header class="barra-titulo">
+      <div class="circulo"></div>
+    </header>
+
+    <main class="contenido">
+
+      <input type="text" class="campo-texto" readonly>
+
+      <section class="fila-listas">
+
+        <article class="columna columna-grande">
+
+          <ul class="lista lista-grande">
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <button type="button" class="marca"></button>
+              <input class="linea" readonly>
+            </li>
+          </ul>
+
+          <nav class="fila-botones">
+            <button type="button" class="enlace-boton">
+              <div class="boton">
+                <div class="pildora"></div>
+                <div class="c-pildora"></div>
+              </div>
+            </button>
+            <button type="button" class="enlace-boton">
+              <div class="boton">
+                <div class="pildora"></div>
+                <div class="c-pildora"></div>
+              </div>
+            </button>
+            <button type="button" class="enlace-boton">
+              <div class="boton">
+                <div class="pildora"></div>
+                <div class="c-pildora"></div>
+              </div>
+            </button>
+            <button type="button" class="enlace-boton">
+              <div class="boton">
+                <div class="pildora"></div>
+                <div class="c-pildora"></div>
+              </div>
+            </button>
+          </nav>
+
+        </article>
+
+        <article class="columna columna-chica">
+
+          <ul class="lista lista-chica">
+            <li class="item-lista item-encabezado">
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <div class="marca"></div>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <div class="marca"></div>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <div class="marca"></div>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <div class="marca"></div>
+              <input class="linea" readonly>
+            </li>
+            <li class="item-lista">
+              <div class="marca"></div>
+              <input class="linea" readonly>
+            </li>
+          </ul>
+
+        </article>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="Home.js"></script>
+
 </body>
 </html>
