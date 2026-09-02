@@ -1,219 +1,257 @@
 :root {
-    --color-fondo-ventana: #e8e8e8;
-    --color-barra-titulo: #a8a5a5;
-    --color-circulo: #d9d9d9;
-  
-    --color-campo-texto: #dcdcdc;
-    --color-texto: #555;
-  
-    --color-lista-fondo: #c4c4c4;
-    --color-marca: #dcdcdc;
-    --color-marca-chica: #a8a5a5;
-  
-    --color-linea-focus: #cfcfcf;
-  
-    --color-boton-fondo: #c4c4c4;
-    --color-pildora: #dcdcdc;
-    --color-c-pildora: #a8a5a5
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    margin: 0;
-    height: 100%;
-  }
-  
-  .ventana {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--color-fondo-ventana);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .barra-titulo {
-    background: var(--color-barra-titulo);
-    height: 6vh;
-    display: flex;
-    align-items: center;
-    padding: 0 2%;
-    flex-shrink: 0;
-  }
-  
-  .circulo {
-    width: 1.6vw;
-    height: 1.6vw;
-    max-width: 20px;
-    max-height: 20px;
-    border-radius: 50%;
-    background: var(--color-circulo);
-  }
-  
-  .contenido {
-    flex: 1;
-    padding: 5% 6%;
-    display: flex;
-    flex-direction: column;
-    gap: 5vh;
-  }
-  
-  .campo-texto {
-    display: flex;
-    align-self: center;
-    width: 60%;
-    height: 9vh;
-    margin-top: -4vh;
-    background: var(--color-campo-texto);
-    border: none;
-    outline: none;
-    padding: 0 3%;
-    font-family: sans-serif;
-    font-size: 0.9rem;
-    color: var(--color-texto);
-  }
-  
-  .fila-listas {
-    flex: 1;
-    display: flex;
-    gap: 3%;
-    align-items: flex-start;
-  }
-  
-  .columna {
-    display: flex;
-    flex-direction: column;
-    gap: 4%;
-  }
-  
-  .columna-grande {
-    width: 64%;
-  }
-  
-  .columna-chica {
-    width: 32%;
-  }
-  
-  .lista {
-    background: var(--color-lista-fondo);
-    border-radius: 6px;
-    padding: 3%;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4vh;
-    width: 100%;
-  }
-  
-  .item-lista {
-    display: flex;
-    align-items: center;
-    gap: 6%;
-  }
-  
-  .marca {
-    width: 1.6vw;
-    height: 1.6vw;
-    max-width: 18px;
-    max-height: 18px;
-    min-width: 10px;
-    min-height: 10px;
-    border-radius: 50%;
-    background: var(--color-marca);
-    flex-shrink: 0;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .lista-chica .linea {
-    border-radius: 10px;
-  }
-  
-  .lista-chica .marca {
-    border-radius: 50%;
-    background: var(--color-marca-chica);
-  }
-  
-  .item-encabezado .linea {
-    width: 100%;
-    height: 6vh;
-  }
-  
-  .linea {
-    flex: 1;
-    height: 3.2vh;
-    background: var(--color-campo-texto);
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    padding: 0 3%;
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    color: var(--color-texto);
-    min-width: 0;
-    display: inline-block;
-    appearance: none;
-  }
-  
-  .linea::placeholder {
-    color: var(--color-placeholder);
-  }
-  
-  .linea:focus {
-    background: var(--color-linea-focus);
-  }
-  
-  .fila-botones {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 4vh;
-    width: 100%;
-  }
-  
-  .enlace-boton {
-    text-decoration: none;
-    color: inherit;
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    text-align: inherit;
-    cursor: pointer;
-  }
-  
-  .boton {
-    width: 60%;
-    height: 6vh;
-    background: var(--color-boton-fondo);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    margin-top: 3vh;
-    padding: 0 6%;
-    cursor: pointer;
-  }
-  
-  .pildora {
-    width: 70%;
-    height: 45%;
-    border-radius: 20px;
-    background: var(--color-pildora);
-  }
-  
-  .c-pildora {
-    width: 1.6vw;
-    height: 1.6vw;
-    max-width: 18px;
-    max-height: 18px;
-    min-width: 10px;
-    min-height: 10px;
-    border-radius: 50%;
-    background: var(--color-c-pildora);
-    flex-shrink: 0;
-    margin-left: 6%;
-  }
+  --color-fondo-ventana: #e8e8e8;
+  --color-barra-titulo: #a8a5a5;
+  --color-circulo: #d9d9d9;
+
+  --color-campo-texto: #dcdcdc;
+  --color-texto: #555;
+
+  --color-lista-fondo: #c4c4c4;
+  --color-marca: #dcdcdc;
+  --color-marca-chica: #a8a5a5;
+
+  --color-linea-focus: #cfcfcf;
+
+  --color-boton-fondo: #c4c4c4;
+  --color-pildora: #dcdcdc;
+  --color-c-pildora: #a8a5a5;
+  --color-pildora-seleccion: #BCBCBC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.ventana {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-fondo-ventana);
+  display: flex;
+  flex-direction: column;
+}
+
+.barra-titulo {
+  background: var(--color-barra-titulo);
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  flex-shrink: 0;
+}
+
+.circulo {
+  width: 1.6vw;
+  height: 1.6vw;
+  max-width: 20px;
+  max-height: 20px;
+  border-radius: 50%;
+  background: var(--color-circulo);
+}
+
+.contenido {
+  flex: 1;
+  padding: 5% 6%;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.campo-texto {
+  display: flex;
+  align-self: center;
+  width: 60%;
+  height: 9vh;
+  margin-top: -4vh;
+  background: var(--color-campo-texto);
+  border: none;
+  outline: none;
+  padding: 0 3%;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-texto);
+}
+
+.fila-listas {
+  flex: 1;
+  display: flex;
+  gap: 3%;
+  align-items: flex-start;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 4%;
+}
+
+.columna-grande {
+  width: 64%;
+}
+
+.columna-chica {
+  width: 32%;
+}
+
+.lista {
+  background: var(--color-lista-fondo);
+  border-radius: 6px;
+  padding: 3%;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  width: 100%;
+}
+
+.item-lista {
+  display: flex;
+  align-items: center;
+  gap: 6%;
+}
+
+.marca {
+  width: 1.6vw;
+  height: 1.6vw;
+  max-width: 18px;
+  max-height: 18px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  background: var(--color-marca);
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.lista-chica .linea {
+  border-radius: 10px;
+}
+
+.lista-chica .marca {
+  border-radius: 50%;
+  background: var(--color-marca-chica);
+}
+
+.item-encabezado .linea {
+  width: 100%;
+  height: 6vh;
+}
+
+.linea {
+  flex: 1;
+  height: 3.2vh;
+  background: var(--color-campo-texto);
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  padding: 0 3%;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-texto);
+  min-width: 0;
+  display: inline-block;
+  appearance: none;
+}
+
+.linea::placeholder {
+  color: var(--color-placeholder);
+}
+
+.linea:focus {
+  background: var(--color-linea-focus);
+}
+
+.fila-botones {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 4vh;
+  width: 100%;
+}
+
+.enlace-boton {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.boton {
+  width: 60%;
+  height: 6vh;
+  background: var(--color-boton-fondo);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+  padding: 0 6%;
+  cursor: pointer;
+}
+
+.pildora {
+  width: 70%;
+  height: 45%;
+  border-radius: 20px;
+  background: var(--color-pildora);
+}
+
+.c-pildora {
+  width: 1.6vw;
+  height: 1.6vw;
+  max-width: 18px;
+  max-height: 18px;
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  background: var(--color-c-pildora);
+  flex-shrink: 0;
+  margin-left: 6%;
+}
+
+.marca,
+.lista-grande .linea {
+  position: relative;
+  z-index: 1;
+}
+
+.lista-grande .item-lista {
+  position: relative;
+  cursor: pointer;
+}
+
+.item-lista.seleccionado .marca {
+  background: var(--color-c-pildora);
+}
+
+.pildora-seleccion {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 104%;
+  height: 160%;
+  background: var(--color-pildora-seleccion);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+.item-lista.seleccionado .pildora-seleccion {
+  display: block;
+}
+.enlace-boton.deshabilitado {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
