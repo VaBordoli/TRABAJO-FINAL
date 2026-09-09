@@ -230,6 +230,10 @@ html, body {
   cursor: pointer;
 }
 
+.lista-grande {
+  min-height: 54vh;
+}
+
 .item-lista.seleccionado .marca {
   background: var(--color-c-pildora);
 }
