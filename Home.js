@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const primerosTres = Array.from(botones).slice(0, 3);
   const botonAgregar = document.getElementById('boton-agregar');
   const botonEliminar = botones[0];
+  const botonCirculo = document.getElementById('boton-circulo');
 
   renderizarListaGrande();
   primerosTres.forEach(boton => boton.classList.add('deshabilitado'));
@@ -75,5 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
     params.set('items', encodeURIComponent(JSON.stringify(items)));
 
     window.location.href = 'Home.html?' + params.toString();
+  });
+
+  botonCirculo.addEventListener('click', () => {
+    window.location.href = 'Perfil.html';
   });
 });

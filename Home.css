@@ -51,6 +51,9 @@ html, body {
   max-height: 20px;
   border-radius: 50%;
   background: var(--color-circulo);
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .contenido {
@@ -232,6 +235,8 @@ html, body {
 
 .lista-grande {
   min-height: 54vh;
+  max-height: 54vh;
+  overflow-y: auto;
 }
 
 .item-lista.seleccionado .marca {
