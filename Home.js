@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const primerosTres = Array.from(botones).slice(0, 3);
   const botonAgregar = document.getElementById('boton-agregar');
   const botonEliminar = botones[0];
+  const botonInformacion = botones[1];
+  const botonEditar = botones[2];
   const botonCirculo = document.getElementById('boton-circulo');
 
   renderizarListaGrande();
@@ -78,7 +80,68 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'Home.html?' + params.toString();
   });
 
+  botonInformacion.addEventListener('click', () => {
+    const itemSeleccionado = document.querySelector('.lista-grande .item-lista.seleccionado');
+    if (!itemSeleccionado) return;
+  
+    const nombreParcela = itemSeleccionado.querySelector('.linea').value;
+    const items = obtenerItemsDeUrl();
+  
+    const params = new URLSearchParams();
+    params.set('parcela', nombreParcela);
+    params.set('items', encodeURIComponent(JSON.stringify(items)));
+  
+    window.location.href = 'Informacion.html?' + params.toString();
+  });
+
+  botonEditar.addEventListener('click', () => {
+    const itemSeleccionado = document.querySelector('.lista-grande .item-lista.seleccionado');
+    if (!itemSeleccionado) return;
+
+    const input = itemSeleccionado.querySelector('.linea');
+
+    input.removeAttribute('readonly');
+    input.focus();
+    input.select();
+
+    function guardarCambio() {
+      const nuevoNombre = input.value.trim();
+      if (nuevoNombre === '') {
+        input.value = input.defaultValue; // evita nombre vacío
+      } else {
+        const items = obtenerItemsDeUrl();
+        const index = Array.from(listaGrandeEl.children).indexOf(itemSeleccionado);
+        items[index].parcela = nuevoNombre;
+
+        const params = new URLSearchParams(window.location.search);
+        params.set('items', encodeURIComponent(JSON.stringify(items)));
+        window.history.replaceState(null, '', 'Home.html?' + params.toString());
+      }
+
+      input.setAttribute('readonly', true);
+      input.removeEventListener('blur', guardarCambio);
+      input.removeEventListener('keydown', manejarTecla);
+    }
+
+    function manejarTecla(e) {
+      if (e.key === 'Enter') {
+        input.blur();
+      } else if (e.key === 'Escape') {
+        input.value = input.defaultValue;
+        input.blur();
+      }
+    }
+
+    input.addEventListener('blur', guardarCambio);
+    input.addEventListener('keydown', manejarTecla);
+  });
+
+
   botonCirculo.addEventListener('click', () => {
-    window.location.href = 'Perfil.html';
+    const items = obtenerItemsDeUrl();
+    const params = new URLSearchParams();
+    params.set('items', encodeURIComponent(JSON.stringify(items)));
+  
+    window.location.href = 'perfil.html?' + params.toString();
   });
 });
