@@ -191,6 +191,7 @@ html, body {
 }
 
 .boton {
+  
   width: 60%;
   height: 6vh;
   background: var(--color-boton-fondo);
@@ -203,6 +204,8 @@ html, body {
 }
 
 .pildora {
+ 
+  font-size: 70%;
   width: 70%;
   height: 45%;
   border-radius: 20px;
@@ -220,6 +223,7 @@ html, body {
   background: var(--color-c-pildora);
   flex-shrink: 0;
   margin-left: 6%;
+ 
 }
 
 .marca,
