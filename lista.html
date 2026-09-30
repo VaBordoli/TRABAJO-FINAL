@@ -2,17 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Agregar parcela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pantalla de listas</title>
+  <link rel="stylesheet" href="lista.css">
 </head>
 <body>
+  <form id="form-agregar" class="ventana">
 
-  <form id="form-agregar">
-    <label>
-      Nombre de la parcela:
-      <input type="text" id="nombre-parcela" required>
-    </label>
-    <br><br>
-    <button type="submit">Agregar</button>
+    <header class="barra-titulo">
+      <button type="button" class="circulo" aria-label="Menú"></button>
+    </header>
+
+    <div class="campo-texto">Creacion de Campos</div>
+
+    <ul class="lista lista-izq">
+      <li class="item-lista item-encabezado">
+        <div class="linea">Nombre y Parcelas</div>
+      </li>
+      <li class="item-lista">
+        <div class="marca"></div>
+        <input class="linea" id="nombre-parcela" type="text" placeholder="Nombre de Campos" required>
+      </li>
+      <li class="item-lista">
+        <div class="marca"></div>
+        <input class="linea" id="parcelas" type="number" min="1" step="1" inputmode="numeric" placeholder="Cantidad de Parcelas">
+        <button type="button" class="marca marca-chica" data-target="parcelas" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="marca marca-chica" data-target="parcelas" data-paso="1" aria-label="Sumar">+</button>
+      </li>
+    </ul>
+
+    <ul class="lista lista-der">
+      <li class="item-lista item-encabezado">
+        <div class="linea">Valores Predeterminados</div>
+      </li>
+      <li class="item-lista">
+        <div class="marca"></div>
+        <input class="linea" id="humedad" type="number" step="1" placeholder="Humedad">
+        <button type="button" class="marca marca-chica" data-target="humedad" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="marca marca-chica" data-target="humedad" data-paso="1" aria-label="Sumar">+</button>
+      </li>
+      <li class="item-lista">
+        <div class="marca"></div>
+        <input class="linea" id="temperatura" type="number" step="1" placeholder="Temperatura">
+        <button type="button" class="marca marca-chica" data-target="temperatura" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="marca marca-chica" data-target="temperatura" data-paso="1" aria-label="Sumar">+</button>
+      </li>
+      <li class="item-lista">
+        <div class="marca"></div>
+        <input class="linea" id="electricidad" type="number" step="1" placeholder="C.Electricidad">
+        <button type="button" class="marca marca-chica" data-target="electricidad" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="marca marca-chica" data-target="electricidad" data-paso="1" aria-label="Sumar">+</button>
+      </li>
+    </ul>
+
+    <!-- Botón inferior: ahora es el que agrega -->
+    <button type="submit" class="enlace-boton" aria-label="Agregar">
+      <div class="boton">
+        <div class="pildora"></div>
+        <div class="c-pildora"></div>
+      </div>
+    </button>
+
   </form>
 
   <script src="lista.js"></script>
