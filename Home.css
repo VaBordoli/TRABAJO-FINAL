@@ -75,8 +75,20 @@ html, body {
   outline: none;
   padding: 0 3%;
   font-family: sans-serif;
-  font-size: 0.9rem;
   color: var(--color-texto);
+  font-size: 4vh;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lista .item-encabezado .facu{
+  font-size: 4vh;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fila-listas {

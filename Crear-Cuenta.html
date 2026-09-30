@@ -9,8 +9,7 @@
 </head>
 <body>
 
-  <!-- ===== HTML: acá va la estructura, el "esqueleto" de los elementos ===== -->
-
+ 
   <div class="ventana">
 
     <!-- barra superior con el circulito, como el botón de cerrar de una ventana -->
@@ -22,7 +21,7 @@
             
 
       <!-- input real: aparece como el rectángulo gris de arriba -->
-      <input type="text" class="campo-texto" placeholder="Crear Cuenta" readonly>
+      <div class="campo-texto">Crear Cuenta</div>
             
 
       <!-- columna con los dos botones grandes, uno arriba del otro -->
@@ -31,7 +30,7 @@
         <a class="enlace-boton">
           <div class="boton boton-superior">
             <div class="pildora">
-              <input type="text" class="campo-texto" placeholder="Nombre de Usuario" >
+              <input type="text" class="franquito" placeholder="Nombre de Usuario" >
             </div>
           </div>
         </a>
@@ -39,7 +38,7 @@
         <a  class="enlace-boton">
           <div class="boton boton-inferior">
             <div class="pildora">
-              <input type="text" class="campo-texto" placeholder="Contraseña" >
+              <input type="text" class="franquito" placeholder="Contraseña" >
             </div>
           </div>
         </a>
@@ -54,7 +53,7 @@
   </div>
 
   <!-- script va al final del body para que el HTML ya esté cargado cuando se ejecute -->
-  <script src="Crear-Cuenta.js"></script>
+  <script src="Iniciar-Sesion.js"></script>
 
 </body>
 </html>

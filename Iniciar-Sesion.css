@@ -48,6 +48,19 @@
     height: 6vh;
     background: #dcdcdc;
     border: none;
+    font-family: sans-serif;
+    font-size: 3vh;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .franquito{
+    width: 50%;
+    height: 6vh;
+    background: #dcdcdc;
+    border: none;
   }
   
   /* columna: los dos botones apilados, uno debajo del otro, más angosta */
