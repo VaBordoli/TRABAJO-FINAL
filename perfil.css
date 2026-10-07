@@ -110,7 +110,8 @@
 
   .boton {
     position: relative;
-    
+    display: flex;
+    justify-content: center;
     left: 40%;
     width: 20vw;
     height: 10vh;
@@ -120,8 +121,12 @@
 
   .p-b-cerrar-sesion {
     position: absolute;
+    top: 50%;
     width: 60%;
     height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: translateY(-50%);
     border-radius: 999px;
     background: var(--color-pildora);
