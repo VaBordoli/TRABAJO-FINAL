@@ -1,0 +1,128 @@
+:root {
+    --color-fondo-ventana: #e8e8e8;
+    --color-barra-titulo: #a8a5a5;
+    --color-circulo: #d9d9d9;
+ 
+    --color-campo-texto: #dcdcdc;
+    --color-texto: #000000;
+ 
+    --color-lista-fondo: #c4c4c4;
+    --color-marca: #dcdcdc;
+    --color-marca-chica: #a8a5a5;
+ 
+    --color-linea-focus: #cfcfcf;
+ 
+    --color-boton-fondo: #c4c4c4;
+    --color-pildora: #dcdcdc;
+    --color-c-pildora: #a8a5a5;
+    --color-pildora-seleccion: #BCBCBC;
+  }
+
+
+
+
+
+
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+ 
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+ 
+  .ventana {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-fondo-ventana);
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .barra-titulo {
+    background: var(--color-barra-titulo);
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    padding: 0 2%;
+    flex-shrink: 0;
+  }
+ 
+  .circulo {
+    width: 1.6vw;
+    height: 1.6vw;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    background: var(--color-circulo);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+ 
+  .contenido {
+    flex: 1;
+    padding: 5% 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+
+
+  .campo-texto {
+    display: flex;
+    align-self: center;
+    width: 60%;
+    height: 9vh;
+    margin: 2vh;
+    background: var(--color-campo-texto);
+    border: none;
+    outline: none;
+    padding: 0 3%;
+    font-family: sans-serif;
+    color: var(--color-texto);
+    font-size: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .NOSEAMIGO{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .b-cerrar-sesion{
+    
+        background: none;    /* Quita el fondo gris predeterminado */
+        border: none;        /* Quita el borde cuadrado predeterminado */
+        padding: 0;          /* Quita el espacio interno por defecto si es necesario */
+        cursor: pointer;     /* Hace que el cursor cambie a una mano al pasar por encima */
+        outline: none;       /* Quita el borde de selección al hacer clic */
+    
+  }
+
+  .boton {
+    position: relative;
+    
+    left: 40%;
+    width: 20vw;
+    height: 10vh;
+    background: var(--color-boton-fondo);
+    border-radius: 500px;
+  }
+
+  .p-b-cerrar-sesion {
+    position: absolute;
+    width: 60%;
+    height: 50%;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: var(--color-pildora);
+  }

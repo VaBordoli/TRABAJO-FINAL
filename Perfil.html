@@ -4,13 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
-    <h1> PERFIL</h1>
-    <a href="Home.html" id="link-regresar">
-        <button>Regresar</button>
-    </a>
 
+
+    <div class="ventana">
+
+
+        <header class="barra-titulo">
+          <button type="button" class="circulo" id="boton-circulo"></button>
+        </header>
+   
+        <main class="contenido">
+    <section class="NOSEAMIGO">
+          <div class="campo-texto"> "Perfil de Usuario"</div>
+          <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Nombre Usuario" required>
+          <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Mail" required>
+          <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Contraseña" required>
+   </section>
+
+   <button id="cerrar-sesion" class="b-cerrar-sesion boton">
+    <div class="p-b-cerrar-sesion"> Cerrar Sesion</div>
+   </button>
+
+   <a href="Home.html" id="link-regresar">
+    <button>Continuar</button>
+</a>
+        </main>
+      </div>
+      
     <script src="perfil.js"></script>
 </body>
 </html>
