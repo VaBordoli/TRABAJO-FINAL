@@ -147,3 +147,22 @@
     background: var(--color-boton-fondo);
     border-radius: 500px;
   }
+
+  .editar-nombre{
+ position: absolute;
+ top: 32%;
+ right: 18%;
+ height: 9vh;
+ width: 5%;
+ 
+  }
+
+  .editar-mail{
+    position: absolute;
+    top: 45%;
+    right: 18%;
+    height: 9vh;
+    width: 5%;
+    
+     }
+        
