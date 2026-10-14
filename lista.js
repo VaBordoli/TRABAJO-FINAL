@@ -15,27 +15,21 @@ document.querySelectorAll('button[data-target]').forEach(function (btn) {
   });
 });
 
-// ---------- Parcelas: solo enteros positivos ----------
-const inputParcelas = document.getElementById('parcelas');
-
-inputParcelas.addEventListener('keydown', function (e) {
-  if (['.', ',', '-', '+', 'e', 'E'].includes(e.key)) e.preventDefault();
-});
-
-inputParcelas.addEventListener('input', function () {
-  this.value = this.value.replace(/\D/g, '');
-});
-
-inputParcelas.addEventListener('blur', function () {
-  if (this.value !== '' && parseInt(this.value, 10) < 1) this.value = 1;
-});
-
 // ---------- Agregar parcela y volver a Home ----------
-document.getElementById('form-agregar').addEventListener('submit', (e) => {
+const form = document.getElementById('form-agregar')
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const nombreParcela = document.getElementById('nombre-parcela').value;
-
+  localStorage.setItem("Nombre Parcela", nombreParcela)
+  const nroSensor = document.getElementById("nSensor").value;
+  localStorage.setItem("Nombre Sensor", nroSensor)
+  const valorHumedad = document.getElementById('humedad').value;
+  localStorage.setItem("Valor Humedad", valorHumedad)
+  const valorTemperatura = document.getElementById('temperatura').value;
+  localStorage.setItem(" Valor Temperatura", valorTemperatura)
+  const valorElectricidad = document.getElementById('electricidad').value;
+  localStorage.setItem("Valor Electricidad", valorElectricidad)
   const urlParams = new URLSearchParams(window.location.search);
   const itemsParam = urlParams.get('items');
   const itemsExistentes = itemsParam ? JSON.parse(decodeURIComponent(itemsParam)) : [];
