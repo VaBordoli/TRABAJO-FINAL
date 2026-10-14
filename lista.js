@@ -23,13 +23,13 @@ form.addEventListener('submit', (e) => {
   const nombreParcela = document.getElementById('nombre-parcela').value;
   localStorage.setItem("Nombre Parcela", nombreParcela)
   const nroSensor = document.getElementById("nSensor").value;
-  localStorage.setItem(`Parcela: ${nombreParcela} : Nombre Sensor`, nroSensor)
+  localStorage.setItem(`${nombreParcela}: Nombre Sensor`, nroSensor)
   const valorHumedad = document.getElementById('humedad').value;
-  localStorage.setItem(`Parcela: ${nombreParcela} : Valor Humedad`, valorHumedad)
+  localStorage.setItem(`${nombreParcela}: Valor Humedad`, valorHumedad)
   const valorTemperatura = document.getElementById('temperatura').value;
-  localStorage.setItem( `Parcela: ${nombreParcela} : Valor Temperatura`, valorTemperatura)
+  localStorage.setItem( `${nombreParcela}: Valor Temperatura`, valorTemperatura)
   const valorElectricidad = document.getElementById('electricidad').value;
-  localStorage.setItem(`Parcela: ${nombreParcela} : Valor Electricidad`, valorElectricidad)
+  localStorage.setItem(`${nombreParcela}: Valor Electricidad`, valorElectricidad)
   const urlParams = new URLSearchParams(window.location.search);
   const itemsParam = urlParams.get('items');
   const itemsExistentes = itemsParam ? JSON.parse(decodeURIComponent(itemsParam)) : [];
