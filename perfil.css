@@ -154,6 +154,7 @@
  right: 18%;
  height: 9vh;
  width: 5%;
+ cursor: pointer;
  
   }
 
@@ -163,15 +164,17 @@
     right: 18%;
     height: 9vh;
     width: 5%;
+    cursor: pointer;
     
      }
 
-     .editar-cobtra{
+     .editar-contra{
       position: absolute;
       top: 58%;
       right: 18%;
       height: 9vh;
       width: 5%;
+      cursor: pointer;
       
        }
         
