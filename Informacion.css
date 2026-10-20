@@ -55,10 +55,11 @@ body {
 }
 #grafico { width: 100%; height: 100%; display: block; }
 .mensaje { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 600; background: rgba(170,170,170,0.85); border-radius: 12px; }
+.mensaje[hidden] { display: none; }
 
 .grid-h { stroke: #c4c4c4; stroke-width: 2; }
 .grid-v { stroke: #c4c4c4; stroke-width: 3; }
-.texto-eje { font-size: 14px; fill: #222; }
+.texto-eje { font-size: 14px; fill: #0e0d0d; }
 .linea-datos { fill: none; stroke: #000; stroke-width: 2.5; stroke-linejoin: round; }
 .punto { fill: #000; cursor: pointer; }
 .linea-base { stroke: #3ddc3d; stroke-width: 2.5; }
