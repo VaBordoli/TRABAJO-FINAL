@@ -7,32 +7,36 @@
     <link rel="stylesheet" href="Informacion.css">
 </head>
 <body>
-    <header class="barra-superior">
-        <a href="Home.html" id="link-regresar">
-            <button type="button" class="boton-regresar">Regresar</button>
-        </a>
-    </header>
-
-    <main class="contenedor">
-        <h1 id="titulo-informacion" class="titulo"></h1>
-
-        <div class="controles">
-            <div class="grupo-toggle" id="toggle-tipo">
-                <button type="button" class="opcion activa" data-tipo="temperatura">Temp°C</button>
-                <button type="button" class="opcion" data-tipo="humedad">Hum %</button>
-            </div>
-
-            <div class="grupo-toggle" id="toggle-rango">
-                <button type="button" class="opcion activa" data-rango="24h">24 Horas</button>
-                <button type="button" class="opcion" data-rango="7d">7 Días</button>
-            </div>
+    <div class="ventana">
+        <div class="barra-titulo">
+            <a href="Home.html" id="link-regresar" title="Regresar">
+                <button type="button" class="circulo" aria-label="Regresar"></button>
+            </a>
         </div>
 
-        <div class="grafico-caja">
-            <svg id="grafico" viewBox="0 0 1000 430" role="img" aria-label="Gráfico de línea"></svg>
-            <p id="mensaje-grafico" class="mensaje" hidden></p>
+        <div class="contenido">
+            <h1 id="titulo-informacion" class="campo-texto"></h1>
+
+            <div class="zona-grafico">
+                <div class="controles">
+                    <div class="grupo-toggle" id="toggle-tipo">
+                        <button type="button" class="opcion activa" data-tipo="temperatura">Temp°C</button>
+                        <button type="button" class="opcion" data-tipo="humedad">Hum %</button>
+                    </div>
+
+                    <div class="grupo-toggle" id="toggle-rango">
+                        <button type="button" class="opcion activa" data-rango="24h">24 Horas</button>
+                        <button type="button" class="opcion" data-rango="7d">7 Días</button>
+                    </div>
+                </div>
+
+                <div class="grafico-caja">
+                    <svg id="grafico" viewBox="0 0 1000 430" role="img" aria-label="Gráfico de línea"></svg>
+                    <p id="mensaje-grafico" class="mensaje" hidden></p>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
     <script src="Informacion.js"></script>
 </body>

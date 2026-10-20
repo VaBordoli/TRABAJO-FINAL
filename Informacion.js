@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '7d':  ['Hace 6 Días', 'Hace 5 Días', 'Hace 4 Días', 'Hace 3 Días', 'Hace 2 Días', 'Ayer', 'Hoy']
   };
 
-  // ================= TÍTULO Y REGRESAR (igual que antes) =================
+  // ================= TÍTULO Y REGRESAR =================
   const params = new URLSearchParams(window.location.search);
   const nombreParcela = params.get('parcela') || '';
   const itemsParam = params.get('items');
@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ================= ESTADO =================
   const estado = { tipo: 'temperatura', rango: '24h' };
-  let numeroPedido = 0; // para ignorar respuestas viejas
+  let numeroPedido = 0;                       // para ignorar respuestas viejas
+  let ultimosValores = Array(7).fill(null);   // para redibujar al cambiar el tamaño
 
   const svg = document.getElementById('grafico');
   const mensaje = document.getElementById('mensaje-grafico');
@@ -111,16 +112,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ================= DIBUJO =================
   function dibujar(valores) {
+    ultimosValores = valores;
+
     const { niveles, unidad } = ESCALAS[estado.tipo];
     const etiquetasX = ETIQUETAS_X[estado.rango];
     const min = niveles[0];
     const max = niveles[niveles.length - 1];
 
-    const izq = 70, der = 940, arriba = 20, abajo = 360;
-    const xDe = i => izq + 50 + (i * (der - izq - 100)) / 6;
+    // El gráfico usa el tamaño real de la caja: no quedan espacios vacíos
+    const ancho = svg.clientWidth || 1000;
+    const alto = svg.clientHeight || 430;
+    svg.setAttribute('viewBox', `0 0 ${ancho} ${alto}`);
+
+    const izq = 55, der = ancho - 65, arriba = 12, abajo = alto - 40;
+    const margenX = Math.min(50, (der - izq) / 14);
+    const xDe = i => izq + margenX + (i * (der - izq - 2 * margenX)) / 6;
     const yDe = v => abajo - ((Math.min(Math.max(v, min), max) - min) / (max - min)) * (abajo - arriba);
 
-    let html = `<rect x="${izq}" y="${arriba - 10}" width="${der - izq}" height="${abajo - arriba + 20}" fill="#999" rx="8"/>`;
+    let html = `<rect x="${izq}" y="${arriba - 8}" width="${der - izq}" height="${abajo - arriba + 16}" rx="8"/>`;
 
     // 5 niveles horizontales
     niveles.forEach(n => {
@@ -132,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7 columnas de tiempo
     etiquetasX.forEach((etiqueta, i) => {
       const x = xDe(i);
-      html += `<line class="grid-v" x1="${x}" x2="${x}" y1="${arriba - 10}" y2="${abajo + 10}"/>`;
-      html += `<text class="texto-eje" x="${x}" y="${abajo + 35}" text-anchor="middle">${etiqueta}</text>`;
+      html += `<line class="grid-v" x1="${x}" x2="${x}" y1="${arriba - 8}" y2="${abajo + 8}"/>`;
+      html += `<text class="texto-eje" x="${x}" y="${abajo + 28}" text-anchor="middle">${etiqueta}</text>`;
     });
 
     // Línea de referencia (valor inicial)
@@ -141,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (referencia !== null) {
       const y = yDe(referencia);
       html += `<line class="linea-base" x1="${izq}" x2="${der}" y1="${y}" y2="${y}"/>`;
-      html += `<rect class="fondo-etiqueta-base" x="${der + 2}" y="${y - 9}" width="54" height="18" rx="4"/>`;
-      html += `<text class="etiqueta-base" x="${der + 29}" y="${y + 4}" text-anchor="middle">Promedio</text>`;
+      html += `<rect class="fondo-etiqueta-base" x="${der + 2}" y="${y - 9}" width="56" height="18" rx="4"/>`;
+      html += `<text class="etiqueta-base" x="${der + 30}" y="${y + 4}" text-anchor="middle">Promedio</text>`;
     }
 
     // Línea de datos (se corta si falta un valor)
@@ -163,6 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     svg.innerHTML = html;
   }
+
+  // Redibujar si cambia el tamaño de la ventana
+  window.addEventListener('resize', () => dibujar(ultimosValores));
 
   // ================= INICIO =================
   dibujar(Array(7).fill(null));
