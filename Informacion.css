@@ -1,0 +1,66 @@
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: system-ui, sans-serif;
+  background: #d9d9d9;
+  color: #222;
+}
+
+.barra-superior { background: #aaa; padding: 12px 20px; flex: 0 0 auto; }
+.boton-regresar { border: 0; border-radius: 14px; padding: 6px 16px; cursor: pointer; background: #eee; }
+
+.contenedor {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo {
+  flex: 0 0 auto;
+  margin: 0 auto 12px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 2rem;
+  background: #ccc;
+  max-width: 520px;
+  padding: 4px 12px;
+}
+
+.controles { flex: 0 0 auto; display: flex; justify-content: space-between; margin-bottom: 10px; }
+.grupo-toggle { display: inline-flex; gap: 4px; background: #aaa; padding: 6px; border-radius: 10px; }
+.opcion { border: 0; background: transparent; padding: 4px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.opcion.activa { background: #fff; }
+
+.grafico-caja {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #aaa;
+  border-radius: 12px;
+  padding: 12px;
+}
+#grafico { width: 100%; height: 100%; display: block; }
+.mensaje { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 600; background: rgba(170,170,170,0.85); border-radius: 12px; }
+
+.grid-h { stroke: #c4c4c4; stroke-width: 2; }
+.grid-v { stroke: #c4c4c4; stroke-width: 3; }
+.texto-eje { font-size: 14px; fill: #222; }
+.linea-datos { fill: none; stroke: #000; stroke-width: 2.5; stroke-linejoin: round; }
+.punto { fill: #000; cursor: pointer; }
+.linea-base { stroke: #3ddc3d; stroke-width: 2.5; }
+.etiqueta-base { font-size: 12px; fill: #000; }
+.fondo-etiqueta-base { fill: #3ddc3d; }
