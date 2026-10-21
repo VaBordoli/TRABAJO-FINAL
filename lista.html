@@ -34,26 +34,51 @@
       <li class="item-lista item-encabezado">
         <div class="linea">Valores Predeterminados</div>
       </li>
+    
+      <!-- Humedad -->
       <li class="item-lista">
         <div class="marca"></div>
-        <input class="linea" id="humedad" type="number" step="1" placeholder="Humedad">
+        <input class="linea campo-num" id="humedad" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="%" data-max="100" placeholder="Humedad">
         <button type="button" class="marca marca-chica" data-target="humedad" data-paso="-1" aria-label="Restar">−</button>
         <button type="button" class="marca marca-chica" data-target="humedad" data-paso="1" aria-label="Sumar">+</button>
       </li>
+    
+      <!-- Humedad mín / máx -->
+      <li class="item-lista">
+        <input class="linea linea-mm mm-izq campo-num" id="humedad-min" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="%" data-max="100" placeholder="Valor Min.">
+        <button type="button" class="btn-mm mm-1" data-target="humedad-min" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="btn-mm mm-2" data-target="humedad-min" data-paso="1" aria-label="Sumar">+</button>
+    
+        <input class="linea linea-mm mm-der campo-num" id="humedad-max" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="%" data-max="100" placeholder="Valor Max">
+        <button type="button" class="btn-mm mm-3" data-target="humedad-max" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="btn-mm mm-4" data-target="humedad-max" data-paso="1" aria-label="Sumar">+</button>
+      </li>
+    
+      <!-- Temperatura -->
       <li class="item-lista">
         <div class="marca"></div>
-        <input class="linea" id="temperatura" type="number" step="1" placeholder="Temperatura">
+        <input class="linea campo-num" id="temperatura" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="°C" placeholder="Temperatura">
         <button type="button" class="marca marca-chica" data-target="temperatura" data-paso="-1" aria-label="Restar">−</button>
         <button type="button" class="marca marca-chica" data-target="temperatura" data-paso="1" aria-label="Sumar">+</button>
       </li>
+    
+      <!-- Temperatura mín / máx -->
       <li class="item-lista">
-        <div class="marca"></div>
-        <input class="linea" id="electricidad" type="number" step="1" placeholder="C.Electricidad">
-        <button type="button" class="marca marca-chica" data-target="electricidad" data-paso="-1" aria-label="Restar">−</button>
-        <button type="button" class="marca marca-chica" data-target="electricidad" data-paso="1" aria-label="Sumar">+</button>
+        <input class="linea linea-mm mm-izq campo-num" id="temperatura-min" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="°C" placeholder="Valor Min.">
+        <button type="button" class="btn-mm mm-1" data-target="temperatura-min" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="btn-mm mm-2" data-target="temperatura-min" data-paso="1" aria-label="Sumar">+</button>
+    
+        <input class="linea linea-mm mm-der campo-num" id="temperatura-max" type="text" inputmode="numeric" autocomplete="off"
+               data-sufijo="°C" placeholder="Valor Max">
+        <button type="button" class="btn-mm mm-3" data-target="temperatura-max" data-paso="-1" aria-label="Restar">−</button>
+        <button type="button" class="btn-mm mm-4" data-target="temperatura-max" data-paso="1" aria-label="Sumar">+</button>
       </li>
     </ul>
-
     <!-- Botón inferior: ahora es el que agrega -->
     <button type="submit" class="enlace-boton" aria-label="Agregar">
       <div class="boton">

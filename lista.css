@@ -75,15 +75,14 @@
   
   .lista {
     position: absolute;
-    top: 29.53%;
+    top: 24%;
+    height: 59%;
     width: 33.39%;
-    height: 49.12%;
     margin: 0;
     padding: 0;
     list-style: none;
     background: var(--color-lista-fondo);
     border-radius: 8px;
-    
   }
   
   .lista-izq { left: 12.17%; }
@@ -178,10 +177,11 @@
   .lista-izq .item-lista:nth-child(3) .marca-chica + .marca-chica { left: 74.38%; }
   
   /* Lista derecha */
-  .lista-der .item-lista:nth-child(2) { --y: 34.52%; }
-  .lista-der .item-lista:nth-child(3) { --y: 55.36%; }
-  .lista-der .item-lista:nth-child(4) { --y: 75.6%; }
-  
+.lista-der .item-lista:nth-child(2) { --y: 30%; }  /* Humedad */
+.lista-der .item-lista:nth-child(3) { --y: 45%; }  /* Humedad min/max */
+.lista-der .item-lista:nth-child(4) { --y: 65%; }  /* Temperatura */
+.lista-der .item-lista:nth-child(5) { --y: 80%; }  /* Temperatura min/max */
+
   /* Botón inferior */
   .enlace-boton {
     position: absolute;
@@ -254,3 +254,33 @@
     -moz-appearance: textfield;
     appearance: textfield;
   }
+
+  /* Campos mínimo / máximo */
+.linea-mm { width: 38%; }
+.mm-izq { left: 9%; }
+.mm-der { left: 53%; }
+
+button.btn-mm {
+  position: absolute;
+  top: calc(var(--y) + 6.5%);
+  width: 3.45%;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--color-marca);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-texto);
+  font-family: sans-serif;
+  font-size: 2.4vh;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mm-1 { left: 23%; }
+.mm-2 { left: 29.5%; }
+.mm-3 { left: 67%; }
+.mm-4 { left: 73.5%; }
