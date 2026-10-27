@@ -97,45 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
   botonEditar.addEventListener('click', () => {
     const itemSeleccionado = document.querySelector('.lista-grande .item-lista.seleccionado');
     if (!itemSeleccionado) return;
-
-    const input = itemSeleccionado.querySelector('.linea');
-
-    input.removeAttribute('readonly');
-    input.focus();
-    input.select();
-
-    function guardarCambio() {
-      const nuevoNombre = input.value.trim();
-      if (nuevoNombre === '') {
-        input.value = input.defaultValue; // evita nombre vacío
-      } else {
-        const items = obtenerItemsDeUrl();
-        const index = Array.from(listaGrandeEl.children).indexOf(itemSeleccionado);
-        items[index].parcela = nuevoNombre;
-
-        const params = new URLSearchParams(window.location.search);
-        params.set('items', encodeURIComponent(JSON.stringify(items)));
-        window.history.replaceState(null, '', 'Home.html?' + params.toString());
-      }
-
-      input.setAttribute('readonly', true);
-      input.removeEventListener('blur', guardarCambio);
-      input.removeEventListener('keydown', manejarTecla);
-    }
-
-    function manejarTecla(e) {
-      if (e.key === 'Enter') {
-        input.blur();
-      } else if (e.key === 'Escape') {
-        input.value = input.defaultValue;
-        input.blur();
-      }
-    }
-
-    input.addEventListener('blur', guardarCambio);
-    input.addEventListener('keydown', manejarTecla);
+  
+    const nombreParcela = itemSeleccionado.querySelector('.linea').value;
+    const items = obtenerItemsDeUrl();
+  
+    const params = new URLSearchParams();
+    params.set('parcela', nombreParcela);
+    params.set('items', encodeURIComponent(JSON.stringify(items)));
+  
+    window.location.href = 'editar.html?' + params.toString();
   });
-
 
   botonCirculo.addEventListener('click', () => {
     const items = obtenerItemsDeUrl();
