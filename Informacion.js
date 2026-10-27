@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const MODO_PRUEBA = true;
 
   // 5 niveles en el eje Y (según el tipo de dato)
+  // ★ CAMBIO 1: ahora hay claveMin y claveMax en vez de claveLocal
   const ESCALAS = {
-    temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40], claveLocal: 'Valor Temperatura' },
-    humedad:     { unidad: '%',  niveles: [0, 25, 50, 75, 100], claveLocal: 'Valor Humedad' }
+    temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40], claveMin: 'Temperatura Min', claveMax: 'Temperatura Max' },
+    humedad:     { unidad: '%',  niveles: [0, 25, 50, 75, 100], claveMin: 'Humedad Min',     claveMax: 'Humedad Max' }
   };
 
   // 7 puntos en el eje X (según el rango)
@@ -86,12 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Valor inicial cargado en el formulario (línea verde de referencia)
-  function obtenerReferencia(valores) {
-    const guardado = parseFloat(localStorage.getItem(`${nombreParcela}: ${ESCALAS[estado.tipo].claveLocal}`));
-    if (Number.isFinite(guardado)) return guardado;
-    const validos = valores.filter(v => v !== null);
-    return validos.length ? validos.reduce((a, b) => a + b, 0) / validos.length : null;
+  // ★ CAMBIO 2: esta función reemplaza a obtenerReferencia
+  // Lee del localStorage el Min y el Max que se cargaron en el formulario
+  function obtenerLimites() {
+    const { claveMin, claveMax } = ESCALAS[estado.tipo];
+    const leer = (clave) => {
+      const n = parseFloat(localStorage.getItem(`${nombreParcela}: ${clave}`));
+      return Number.isFinite(n) && n > 0 ? n : null; // 0 = campo vacío en el formulario
+    };
+    return { min: leer(claveMin), max: leer(claveMax) };
   }
 
   async function cargarDatos() {
@@ -145,14 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
       html += `<text class="texto-eje" x="${x}" y="${abajo + 28}" text-anchor="middle">${etiqueta}</text>`;
     });
 
-    // Línea de referencia (valor inicial)
-    const referencia = obtenerReferencia(valores);
-    if (referencia !== null) {
-      const y = yDe(referencia);
-      html += `<line class="linea-base" x1="${izq}" x2="${der}" y1="${y}" y2="${y}"/>`;
-      html += `<rect class="fondo-etiqueta-base" x="${der + 2}" y="${y - 9}" width="56" height="18" rx="4"/>`;
-      html += `<text class="etiqueta-base" x="${der + 30}" y="${y + 4}" text-anchor="middle">Promedio</text>`;
-    }
+    // ★ CAMBIO 3: acá estaba el bloque de "Promedio"; ahora son las líneas Max y Min
+    const limites = obtenerLimites();
+    [
+      { valor: limites.max, texto: 'Max', clase: 'max' },
+      { valor: limites.min, texto: 'Min', clase: 'min' }
+    ].forEach(l => {
+      if (l.valor === null) return;
+      const y = yDe(l.valor);
+      html += `<line class="linea-limite linea-${l.clase}" x1="${izq}" x2="${der}" y1="${y}" y2="${y}"/>`;
+      html += `<rect class="fondo-etiqueta-limite fondo-${l.clase}" x="${der + 2}" y="${y - 9}" width="56" height="18" rx="4"/>`;
+      html += `<text class="etiqueta-limite" x="${der + 30}" y="${y + 4}" text-anchor="middle">${l.texto}</text>`;
+    });
 
     // Línea de datos (se corta si falta un valor)
     let trazo = '';

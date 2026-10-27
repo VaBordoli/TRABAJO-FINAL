@@ -166,3 +166,9 @@
   .linea-base { stroke: #3ddc3d; stroke-width: 2.5; }
   .texto-eje { font-size: 13px; fill: #000; font-weight: 600; font-family: sans-serif; }
   .fondo-etiqueta-base { fill: #3ddc3d; }
+  .linea-limite { stroke-width: 2; stroke-dasharray: 6 4; }
+  .linea-max { stroke: #e53935; }
+  .linea-min { stroke: #1e88e5; }
+  .fondo-max { fill: #e53935; }
+  .fondo-min { fill: #1e88e5; }
+  .etiqueta-limite { fill: #fff; font-size: 12px; font-weight: 600; }
