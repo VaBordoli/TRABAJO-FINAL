@@ -4,6 +4,7 @@ body { background: #e8e8e8; min-height: 100vh; }
 
 /* Barra superior */
 .barra { 
+  position: relative;
   background: #a5a3a1;
    height: 38px; 
    display: flex; 
@@ -11,7 +12,9 @@ body { background: #e8e8e8; min-height: 100vh; }
    padding: 0 12px;
   }
 
-.circulo {
+.circulo-barra {
+  position: absolute;
+  right: 96%;
   display: flex;
   justify-content: center;  /* centra horizontalmente */
   align-items: center;
@@ -21,7 +24,7 @@ body { background: #e8e8e8; min-height: 100vh; }
   background: #d9d9d9;
 }
 
-.circulo img{
+.circulo-barra img{
   width: 80%;       /* 60% del círculo */
   height: auto;
   display: block;
