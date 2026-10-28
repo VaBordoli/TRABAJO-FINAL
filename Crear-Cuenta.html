@@ -5,7 +5,7 @@
   <title>Ejemplo de ventana</title>
 
   <!-- link conecta este HTML con el archivo de estilos externo -->
-  <link rel="stylesheet" href="Iniciar-Sesion.css">
+  <link rel="stylesheet" href="Crear-Cuenta.css">
 </head>
 <body>
 
@@ -20,6 +20,8 @@
     </div>
 
     <div class="contenido">
+
+      <div class="nose">
             
 
       <!-- input real: aparece como el rectángulo gris de arriba -->
@@ -28,11 +30,19 @@
 
       <!-- columna con los dos botones grandes, uno arriba del otro -->
       <div class="columna-botones">
+
+        <a class="enlace-boton">
+          <div class="boton boton-superior">
+            <div class="pildora">
+              <input type="text" id="mail"  class="franquito" placeholder="Mail" >
+            </div>
+          </div>
+        </a>
         
         <a class="enlace-boton">
           <div class="boton boton-superior">
             <div class="pildora">
-              <input type="text" class="franquito" placeholder="Nombre de Usuario" >
+              <input type="text" id="nUsuario" class="franquito" placeholder="Nombre de Usuario" >
             </div>
           </div>
         </a>
@@ -40,7 +50,7 @@
         <a  class="enlace-boton">
           <div class="boton boton-inferior">
             <div class="pildora">
-              <input type="text" class="franquito" placeholder="Contraseña" >
+              <input type="text" id="contra" class="franquito" placeholder="Contraseña" >
             </div>
           </div>
         </a>
@@ -52,10 +62,12 @@
       </a>
 
     </div>
+
+    </div>
   </div>
 
   <!-- script va al final del body para que el HTML ya esté cargado cuando se ejecute -->
-  <script src="Iniciar-Sesion.js"></script>
+  <script src="Crear-Cuenta.js"></script>
 
 </body>
 </html>

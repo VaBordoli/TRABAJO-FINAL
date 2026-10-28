@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cada cuánto se vuelve a pedir la info (ms). 0 = no refrescar.
   const INTERVALO_REFRESCO_MS = 30000;
   // true = usa datos inventados para probar el diseño sin programa externo.
-  const MODO_PRUEBA = true;
+  const MODO_PRUEBA = false;
 
   // 5 niveles en el eje Y (según el tipo de dato)
   // ★ CAMBIO 1: ahora hay claveMin y claveMax en vez de claveLocal
