@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     params.set('parcela', nombreParcela);
     params.set('items', encodeURIComponent(JSON.stringify(items)));
   
-    window.location.href = 'Informacion.html?' + params.toString();
+    window.location.href = 'campo.html?' + params.toString();   // <- esta línea es la que te manda
   });
 
   botonEditar.addEventListener('click', () => {

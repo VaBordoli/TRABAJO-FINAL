@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campo | Earth-Grid</title>
+  <link rel="stylesheet" href="campo.css">
+</head>
+<body>
+
+  <div class="ventana">
+
+    <!-- barra superior con el circulito (lleva al perfil, igual que en la lista) -->
+    <div class="barra-titulo">
+      <div class="circulo" id="boton-circulo">
+        <img src="img/logo.png" alt="Logo">
+      </div>
+    </div>
+
+    <div class="contenido">
+
+      <div class="campo-texto">Campo “<span id="nombreCampo">XXXXXXX</span>”</div>
+
+      <!-- los 4 interruptores del mockup, en dos grupos -->
+      <div class="fila-botones">
+        <div class="grupo">
+          <button class="pildora activa" data-vista="temperatura">Temp °C</button>
+          <button class="pildora" data-vista="humedad">Hum %</button>
+        </div>
+        <div class="grupo">
+          <button class="pildora activa" data-rango="24h">24 Horas</button>
+          <button class="pildora" data-rango="7d">7 Días</button>
+        </div>
+      </div>
+
+      <div class="tarjetas">
+        <div class="tarjeta temperatura">
+          <h2>Temperatura</h2>
+          <p class="valor"><span id="valorTemperatura">--</span><small>°C</small></p>
+        </div>
+        <div class="tarjeta humedad">
+          <h2>% de Humedad</h2>
+          <p class="valor"><span id="valorHumedad">--</span><small>%</small></p>
+        </div>
+      </div>
+
+      <p class="estado" id="estado">Conectando…</p>
+    </div>
+  </div>
+
+  <script src="campo.js"></script>
+</body>
+</html>
