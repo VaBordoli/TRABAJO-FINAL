@@ -189,3 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarDatos();
   if (INTERVALO_REFRESCO_MS > 0) setInterval(cargarDatos, INTERVALO_REFRESCO_MS);
 });
+
+const paramsInfo = new URLSearchParams(window.location.search);
+
+document.getElementById('boton-circulo').addEventListener('click', () => {
+  const nuevos = new URLSearchParams();
+  nuevos.set('parcela', paramsInfo.get('parcela') || '');
+  nuevos.set('items', paramsInfo.get('items') || '');
+  window.location.href = 'campo.html?' + nuevos.toString();
+});
