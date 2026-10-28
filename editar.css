@@ -3,8 +3,29 @@
 body { background: #e8e8e8; min-height: 100vh; }
 
 /* Barra superior */
-.barra { background: #a5a3a1; height: 38px; display: flex; align-items: center; padding: 0 12px; }
-.circulo-barra { width: 20px; height: 20px; border-radius: 50%; background: #e8e8e8; display: block; }
+.barra { 
+  background: #a5a3a1;
+   height: 38px; 
+   display: flex; 
+   align-items: center; 
+   padding: 0 12px;
+  }
+
+.circulo {
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background: #d9d9d9;
+}
+
+.circulo img{
+  width: 80%;       /* 60% del círculo */
+  height: auto;
+  display: block;
+}
 
 /* Título */
 .titulo {

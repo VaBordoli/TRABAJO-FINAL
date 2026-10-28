@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Campo</title>
+  <link rel="stylesheet" href="campo.css">
+</head>
+<body>
+
+  <div class="ventana">
+
+    <div class="barra-titulo">
+      <button type="button" class="circulo" id="boton-circulo">
+        <img src="img/logo.png" alt="Logo">
+      </button>
+    </div>
+
+    <div class="contenido">
+
+      <div class="campo-texto">Campo “<span id="nombre-campo"></span>”</div>
+
+      <div class="fila-pastillas">
+        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
+        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
+        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
+        <button type="button" class="pastilla" id="boton-informacion"><div class="riel"></div><div class="punto"></div></button>
+      </div>
+
+      <div class="fila-tarjetas">
+        <div class="tarjeta">
+          <div class="titulo">Temperatura</div>
+          <div class="numero"><span id="temperatura">--</span>°C</div>
+        </div>
+        <div class="tarjeta">
+          <div class="titulo">% de Humedad</div>
+          <div class="numero"><span id="humedad">--</span>%</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="campo.js"></script>
+</body>
+</html>
