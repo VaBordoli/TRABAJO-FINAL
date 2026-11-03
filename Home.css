@@ -286,3 +286,36 @@ html, body {
   pointer-events: none;
   cursor: default;
 }
+
+/* ---------- Panel de notificaciones ---------- */
+.lista-chica {
+  max-height: 54vh;
+  overflow-y: auto;
+}
+
+/* el mensaje puede ocupar varias líneas */
+.linea.notificacion {
+  height: auto;
+  min-height: 3.2vh;
+  padding: 2% 3%;
+  white-space: normal;
+  word-break: break-word;
+  border-radius: 10px;
+}
+
+/* la x para borrar */
+.borrar-notificacion {
+  width: 1.6vw;
+  height: 1.6vw;
+  min-width: 18px;
+  min-height: 18px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background: var(--color-marca-chica);
+  color: var(--color-texto);
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
