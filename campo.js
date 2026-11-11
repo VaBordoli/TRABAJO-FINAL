@@ -1,49 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Dirección del programa que manda los datos (cambiala por la real).
-  // Tiene que responder algo así: { "temperatura": 67, "humedad": 67 }
-  const URL_DATOS = 'http://localhost:5000/datos';
-
   const params = new URLSearchParams(window.location.search);
   const parcela = params.get('parcela');
 
-  // Nombre del campo en el título
   document.getElementById('nombre-campo').textContent = parcela || '';
 
-  // NUEVO: guarda el valor y rearma el aviso si ya volvió a estar en rango
-  function guardarYRevisar(tipo, valor) {
-    valor = Number(valor);
-    localStorage.setItem(`${parcela}: Valor ${tipo}`, valor);
-
-    const min = Number(localStorage.getItem(`${parcela}: ${tipo} Min`));
-    const max = Number(localStorage.getItem(`${parcela}: ${tipo} Max`));
-    const nombre = tipo.toLowerCase();
-
-    // Si ya NO está pasado del máximo, se borra la marca de "descartada"
-    if (!(max > 0 && valor > max)) {
-      localStorage.removeItem(`Descartada: ${parcela}|${nombre}|max`);
-    }
-    // Si ya NO está por debajo del mínimo, se borra la marca de "descartada"
-    if (!(valor < min)) {
-      localStorage.removeItem(`Descartada: ${parcela}|${nombre}|min`);
-    }
+  // Pone el número en pantalla, o -- si no hay dato
+  function mostrar(id, valor) {
+    document.getElementById(id).textContent = valor === null ? '--' : valor;
   }
 
-  // Pide los datos y los pone en las tarjetas
   async function cargarDatos() {
     try {
-      const respuesta = await fetch(URL_DATOS);
-      const datos = await respuesta.json();
-
-      document.getElementById('temperatura').textContent = datos.temperatura;
-      document.getElementById('humedad').textContent = datos.humedad;
-
-      // NUEVO
-      guardarYRevisar('Temperatura', datos.temperatura);
-      guardarYRevisar('Humedad', datos.humedad);
+      const datos = await pedirValorActual(parcela);
+      mostrar('temperatura', datos.temperatura);
+      mostrar('humedad', datos.humedad);
     } catch (error) {
-      document.getElementById('temperatura').textContent = '--';
-      document.getElementById('humedad').textContent = '--';
+      mostrar('temperatura', null);
+      mostrar('humedad', null);
       console.error(error);
     }
   }
@@ -58,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'Home.html?' + nuevos.toString();
   });
 
-  // Cuarto botón (el último de la derecha): va a Informacion
+  // Cuarto botón: va a Informacion
   document.getElementById('boton-informacion').addEventListener('click', () => {
     const nuevos = new URLSearchParams();
     nuevos.set('parcela', parcela || '');

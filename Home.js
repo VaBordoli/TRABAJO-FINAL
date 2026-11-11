@@ -60,6 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
     lista.push({ id: id, texto: texto });
   }
 
+
+    // Lee los valores de todas las parcelas y recalcula las notificaciones
+    async function actualizarValores() {
+      const items = obtenerItemsDeUrl();
+  
+      for (const item of items) {
+        try {
+          await pedirValorActual(item.parcela);
+        } catch (error) {
+          console.error('No se pudo leer la parcela ' + item.parcela, error);
+        }
+      }
+  
+      renderizarNotificaciones();
+    }
   // Compara los valores de cada parcela con su mínimo y máximo
   function obtenerNotificaciones() {
     const items = obtenerItemsDeUrl();
@@ -120,6 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listaChicaEl.innerHTML = html;
   }
+
+  actualizarValores();
+  setInterval(actualizarValores, 5000);
 
   // Un solo listener en la lista: detecta clicks en cualquier ✕
   listaChicaEl.addEventListener('click', (e) => {

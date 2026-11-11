@@ -62,29 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   { "valores": [n1, n2, n3, n4, n5, n6, n7] }   (o directamente el array)
   // Un valor null/ausente deja ese punto vacío.
   async function pedirValores() {
-    if (MODO_PRUEBA) {
-      const { niveles } = ESCALAS[estado.tipo];
-      const min = niveles[0], max = niveles[niveles.length - 1];
-      return Array.from({ length: 7 }, () => min + Math.random() * (max - min) * 0.6 + (max - min) * 0.1);
-    }
-
-    const url = `${API_URL}?${new URLSearchParams({
-      parcela: nombreParcela,
-      tipo: estado.tipo,
-      rango: estado.rango
-    })}`;
-
-    const respuesta = await fetch(url);
-    if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
-    const datos = await respuesta.json();
-    const lista = Array.isArray(datos) ? datos : datos.valores;
-    if (!Array.isArray(lista)) throw new Error('Formato inesperado');
-
-    // Siempre 7 posiciones
-    return Array.from({ length: 7 }, (_, i) => {
-      const n = parseFloat(lista[i]);
-      return Number.isFinite(n) ? n : null;
-    });
+    return await pedirHistorial(nombreParcela, estado.tipo, estado.rango);
   }
 
   // ★ CAMBIO 2: esta función reemplaza a obtenerReferencia
