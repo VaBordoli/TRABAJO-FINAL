@@ -1,26 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ================= CONFIGURACIÓN =================
-  // Dirección del programa que envía los datos (cambiala por la tuya).
+  
   const API_URL = 'http://localhost:3000/api/datos';
-  // Cada cuánto se vuelve a pedir la info (ms). 0 = no refrescar.
+
   const INTERVALO_REFRESCO_MS = 30000;
-  // true = usa datos inventados para probar el diseño sin programa externo.
+
   const MODO_PRUEBA = true;
 
-  // 5 niveles en el eje Y (según el tipo de dato)
-  // ★ CAMBIO 1: ahora hay claveMin y claveMax en vez de claveLocal
+  
   const ESCALAS = {
     temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40], claveMin: 'Temperatura Min', claveMax: 'Temperatura Max' },
     humedad:     { unidad: '%',  niveles: [0, 25, 50, 75, 100], claveMin: 'Humedad Min',     claveMax: 'Humedad Max' }
   };
 
-  // 7 puntos en el eje X (según el rango)
   const ETIQUETAS_X = {
     '24h': ['Hace 24 Horas', 'Hace 20 Horas', 'Hace 16 Horas', 'Hace 12 Horas', 'Hace 8 Horas', 'Hace 4 Horas', 'Ahora'],
     '7d':  ['Hace 6 Días', 'Hace 5 Días', 'Hace 4 Días', 'Hace 3 Días', 'Hace 2 Días', 'Ayer', 'Hoy']
   };
 
-  // ================= TÍTULO Y REGRESAR =================
   const params = new URLSearchParams(window.location.search);
   const nombreParcela = params.get('parcela') || '';
   const itemsParam = params.get('items');
@@ -34,15 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     linkRegresar.href = 'Home.html?' + regresoParams.toString();
   }
 
-  // ================= ESTADO =================
   const estado = { tipo: 'temperatura', rango: '24h' };
-  let numeroPedido = 0;                       // para ignorar respuestas viejas
-  let ultimosValores = Array(7).fill(null);   // para redibujar al cambiar el tamaño
+  let numeroPedido = 0;                       
+  let ultimosValores = Array(7).fill(null);   
 
   const svg = document.getElementById('grafico');
   const mensaje = document.getElementById('mensaje-grafico');
 
-  // ================= TOGGLES =================
   function activarToggle(idContenedor, atributo, clave) {
     const botones = document.querySelectorAll(`#${idContenedor} .opcion`);
     botones.forEach(boton => {
@@ -57,21 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
   activarToggle('toggle-tipo', 'tipo', 'tipo');
   activarToggle('toggle-rango', 'rango', 'rango');
 
-  // ================= DATOS =================
-  // El programa externo debe responder JSON así:
-  //   { "valores": [n1, n2, n3, n4, n5, n6, n7] }   (o directamente el array)
-  // Un valor null/ausente deja ese punto vacío.
+  
   async function pedirValores() {
     return await pedirHistorial(nombreParcela, estado.tipo, estado.rango);
   }
 
-  // ★ CAMBIO 2: esta función reemplaza a obtenerReferencia
-  // Lee del localStorage el Min y el Max que se cargaron en el formulario
+  
   function obtenerLimites() {
     const { claveMin, claveMax } = ESCALAS[estado.tipo];
     const leer = (clave) => {
       const n = parseFloat(localStorage.getItem(`${nombreParcela}: ${clave}`));
-      return Number.isFinite(n) && n > 0 ? n : null; // 0 = campo vacío en el formulario
+      return Number.isFinite(n) && n > 0 ? n : null; 
     };
     return { min: leer(claveMin), max: leer(claveMax) };
   }
@@ -92,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ================= DIBUJO =================
   function dibujar(valores) {
     ultimosValores = valores;
 
@@ -101,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const min = niveles[0];
     const max = niveles[niveles.length - 1];
 
-    // El gráfico usa el tamaño real de la caja: no quedan espacios vacíos
     const ancho = svg.clientWidth || 1000;
     const alto = svg.clientHeight || 430;
     svg.setAttribute('viewBox', `0 0 ${ancho} ${alto}`);
@@ -113,21 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let html = `<rect x="${izq}" y="${arriba - 8}" width="${der - izq}" height="${abajo - arriba + 16}" rx="8"/>`;
 
-    // 5 niveles horizontales
     niveles.forEach(n => {
       const y = yDe(n);
       html += `<line class="grid-h" x1="${izq}" x2="${der}" y1="${y}" y2="${y}"/>`;
       html += `<text class="texto-eje" x="${izq - 8}" y="${y + 5}" text-anchor="end">${n}${unidad}</text>`;
     });
 
-    // 7 columnas de tiempo
     etiquetasX.forEach((etiqueta, i) => {
       const x = xDe(i);
       html += `<line class="grid-v" x1="${x}" x2="${x}" y1="${arriba - 8}" y2="${abajo + 8}"/>`;
       html += `<text class="texto-eje" x="${x}" y="${abajo + 28}" text-anchor="middle">${etiqueta}</text>`;
     });
 
-    // ★ CAMBIO 3: acá estaba el bloque de "Promedio"; ahora son las líneas Max y Min
     const limites = obtenerLimites();
     [
       { valor: limites.max, texto: 'Max', clase: 'max' },
@@ -140,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
       html += `<text class="etiqueta-limite" x="${der + 30}" y="${y + 4}" text-anchor="middle">${l.texto}</text>`;
     });
 
-    // Línea de datos (se corta si falta un valor)
     let trazo = '';
     let anteriorValido = false;
     valores.forEach((v, i) => {
@@ -150,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (trazo) html += `<path class="linea-datos" d="${trazo}"/>`;
 
-    // Puntos con valor al pasar el mouse
     valores.forEach((v, i) => {
       if (v === null) return;
       html += `<circle class="punto" cx="${xDe(i)}" cy="${yDe(v)}" r="5"><title>${etiquetasX[i]}: ${v.toFixed(1)}${unidad}</title></circle>`;
@@ -159,10 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     svg.innerHTML = html;
   }
 
-  // Redibujar si cambia el tamaño de la ventana
   window.addEventListener('resize', () => dibujar(ultimosValores));
 
-  // ================= INICIO =================
   dibujar(Array(7).fill(null));
   cargarDatos();
   if (INTERVALO_REFRESCO_MS > 0) setInterval(cargarDatos, INTERVALO_REFRESCO_MS);

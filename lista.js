@@ -1,8 +1,4 @@
-// ---------- Campos numéricos (humedad / temperatura) ----------
-// - Sin negativos
-// - Sufijo fijo (% o °C)
-// - Humedad máx 100 (data-max)
-// - Si el valor es 0, se vuelve a ver el nombre (placeholder)
+
 
 function valorNumerico(input) {
   const n = parseInt(input.value.replace(/\D/g, ''), 10);
@@ -16,7 +12,7 @@ function mostrar(input, n) {
   if (n > 0) {
     input.value = n + input.dataset.sufijo;
   } else {
-    input.value = '';   // vuelve a mostrar el placeholder
+    input.value = '';   
   }
   return n;
 }
@@ -25,14 +21,12 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
   input.addEventListener('input', function () {
     const n = mostrar(input, valorNumerico(input));
     if (n > 0) {
-      // cursor antes del símbolo
       const pos = String(n).length;
       input.setSelectionRange(pos, pos);
     }
   });
 });
 
-// ---------- Botones − y + ----------
 document.querySelectorAll('button[data-target]').forEach(function (btn) {
   btn.addEventListener('click', function () {
     const input = document.getElementById(btn.dataset.target);
@@ -41,12 +35,12 @@ document.querySelectorAll('button[data-target]').forEach(function (btn) {
   });
 });
 
-// ---------- Agregar parcela y volver a Home ----------
+
 const form = document.getElementById('form-agregar');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const leer = (id) => valorNumerico(document.getElementById(id)); // número limpio, sin % ni °C
+  const leer = (id) => valorNumerico(document.getElementById(id)); 
 
   const nombreParcela = document.getElementById('nombre-parcela').value;
   localStorage.setItem("Nombre Parcela", nombreParcela);

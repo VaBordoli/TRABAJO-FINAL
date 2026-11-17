@@ -5,11 +5,11 @@
   .enlace-boton {
     text-decoration: none;
     color: inherit;
-    width: 24%; /* mismo ancho que .boton tenía antes */
+    width: 24%; 
   }
   
   .enlace-boton .boton {
-    width: 100%; /* el boton ahora ocupa todo el <a> que lo contiene */
+    width: 100%; 
   }
   
   html, body {
@@ -40,7 +40,7 @@
 }
 
 .logo img{
-  width: 100%;       /* 60% del círculo */
+  width: 100%;       
   height: auto;
   display: block;
 }
@@ -63,7 +63,7 @@
   
   .circulo {
     display: flex;
-    justify-content: center;  /* centra horizontalmente */
+    justify-content: center;  
     align-items: center;
     width: 2vw;
     height: 2vw;
@@ -72,7 +72,7 @@
   }
   
 .circulo img{
-  width: 80%;       /* 60% del círculo */
+  width: 80%;      
   height: auto;
   display: block;
 }

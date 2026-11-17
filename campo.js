@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('nombre-campo').textContent = parcela || '';
 
-  // Pone el número en pantalla, o -- si no hay dato
   function mostrar(id, valor) {
     document.getElementById(id).textContent = valor === null ? '--' : valor;
   }
@@ -25,14 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarDatos();
   setInterval(cargarDatos, 5000);
 
-  // Logo: vuelve a la Home
   document.getElementById('boton-circulo').addEventListener('click', () => {
     const nuevos = new URLSearchParams();
     nuevos.set('items', params.get('items') || '');
     window.location.href = 'Home.html?' + nuevos.toString();
   });
 
-  // Cuarto botón: va a Informacion
   document.getElementById('boton-informacion').addEventListener('click', () => {
     const nuevos = new URLSearchParams();
     nuevos.set('parcela', parcela || '');

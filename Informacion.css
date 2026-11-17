@@ -16,7 +16,7 @@
   html, body {
     margin: 0;
     height: 100%;
-    overflow: hidden; /* pantalla quieta, sin deslizar */
+    overflow: hidden; 
   }
   
   .ventana {
@@ -28,7 +28,6 @@
     overflow: hidden;
   }
   
-  /* ---------- Barra de arriba (igual que Home) ---------- */
   .barra-titulo {
     background: var(--color-barra-titulo);
     height: 6vh;
@@ -44,7 +43,7 @@
   
   .circulo {
     display: flex;
-   justify-content: center;  /* centra horizontalmente */
+   justify-content: center;  
    align-items: center;
    width: 2vw;
    height: 2vw;
@@ -56,11 +55,11 @@
   }
   
   .circulo img{
-    width: 80%;       /* 60% del círculo */
+    width: 80%;       
     height: auto;
     display: block;
   }
-  /* ---------- Contenido ---------- */
+
   .contenido {
     flex: 1;
     min-height: 0;
@@ -70,7 +69,6 @@
     gap: 5vh;
   }
   
-  /* Barra del título (igual que Home) */
   .campo-texto {
     display: flex;
     justify-content: center;
@@ -90,7 +88,6 @@
     overflow: hidden;
   }
   
-  /* ---------- Toggles + gráfico ---------- */
   .zona-grafico {
     flex: 1;
     min-height: 0;
@@ -144,7 +141,6 @@
     display: block;
   }
   
-  /* Fondo del área del gráfico (el rect que dibuja el JS) */
   #grafico > rect:first-child {
     fill: var(--color-barra-titulo);
   }
@@ -163,7 +159,6 @@
   }
   .mensaje[hidden] { display: none; }
   
-  /* ---------- Elementos del gráfico ---------- */
   .grid-h { stroke: #c4c4c4; stroke-width: 2; }
   .grid-v { stroke: #c4c4c4; stroke-width: 3; }
   .texto-eje { font-size: 13px; fill: #000; font-weight: 600; font-family: sans-serif; }

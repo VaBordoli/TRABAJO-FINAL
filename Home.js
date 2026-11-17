@@ -37,17 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     activarSeleccion();
   }
 
-  // ================= NOTIFICACIONES (NUEVO) =================
 
-  // Lee un número guardado en localStorage. Si no existe, devuelve null
   function leerNumero(clave) {
     const valor = localStorage.getItem(clave);
     return valor === null ? null : Number(valor);
   }
 
-  // Si la condición se cumple y no fue descartada, agrega la notificación a la lista.
-  // Si la condición ya no se cumple, borra la marca de "descartada"
-  // (así, si se vuelve a pasar más adelante, avisa de nuevo).
+ 
   function evaluar(lista, id, condicion, texto) {
     const claveDescartada = 'Descartada: ' + id;
 
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-    // Lee los valores de todas las parcelas y recalcula las notificaciones
     async function actualizarValores() {
       const items = obtenerItemsDeUrl();
   
@@ -75,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
       renderizarNotificaciones();
     }
-  // Compara los valores de cada parcela con su mínimo y máximo
   function obtenerNotificaciones() {
     const items = obtenerItemsDeUrl();
     const lista = [];
@@ -83,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(item => {
       const p = item.parcela;
 
-      // Se repite lo mismo para temperatura y humedad
       ['Temperatura', 'Humedad'].forEach(tipo => {
         const valor = leerNumero(`${p}: Valor ${tipo}`);
         const min = leerNumero(`${p}: ${tipo} Min`);
@@ -92,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (valor === null) return;
 
-        // Máximo: solo se compara si se cargó uno (0 = sin máximo)
         evaluar(
           lista,
           `${p}|${nombre}|max`,
@@ -100,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
           `Parcela "${p}" se ha pasado del máximo de ${nombre}`
         );
 
-        // Mínimo
         evaluar(
           lista,
           `${p}|${nombre}|min`,
@@ -113,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return lista;
   }
 
-  // Dibuja el panel con innerHTML
   function renderizarNotificaciones() {
     const notificaciones = obtenerNotificaciones();
 
@@ -139,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
   actualizarValores();
   setInterval(actualizarValores, 5000);
 
-  // Un solo listener en la lista: detecta clicks en cualquier ✕
   listaChicaEl.addEventListener('click', (e) => {
     const boton = e.target.closest('.borrar-notificacion');
     if (!boton) return;
@@ -151,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarNotificaciones();
   });
 
-  // ==========================================================
 
   function activarSeleccion() {
     const itemsListaGrande = document.querySelectorAll('.lista-grande .item-lista');

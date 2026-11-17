@@ -26,7 +26,7 @@
   
   .circulo {
     display: flex;
-    justify-content: center;  /* centra horizontalmente */
+    justify-content: center;  
     align-items: center;
     width: 2vw;
     height: 2vw;
@@ -35,7 +35,7 @@
   }
   
 .circulo img{
-  width: 80%;       /* 60% del círculo */
+  width: 80%;       
   height: auto;
   display: block;
 }
@@ -48,14 +48,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    gap: 30px; /* espacio entre el input, los botones y el botón chico */
+    gap: 30px; 
   }
   
   .nose{
   display: flex;
-  flex-direction: column;    /* Coloca los elementos uno abajo del otro */
-  align-items: center;       /* Mantiene los inputs y el título centrados entre sí */
-  gap: 15px;                 /* Separa los inputs verticalmente */
+  flex-direction: column;    
+  align-items: center;       
+  gap: 15px;                
   width: 50%;
   }
   .campo-texto {
@@ -78,9 +78,8 @@
     border: none;
   }
   
-  /* columna: los dos botones apilados, uno debajo del otro, más angosta */
   .columna-botones {
-    width: 60%; /* antes 100%, ahora más corta a lo ancho */
+    width: 60%; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,7 +131,7 @@
   
   .boton-chico {
     display: block;
-    width: 150px;          /* ancho fijo y razonable, no 200% */
+    width: 150px;          
     padding: 1.2vh 6%;
     border-radius: 20px;
     background: #a8a5a5;

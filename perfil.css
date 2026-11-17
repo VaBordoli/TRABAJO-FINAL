@@ -35,11 +35,9 @@
     width: 100%;
     height: 100vh;
     
-    /* Eliminar los márgenes por defecto del navegador */
     margin: 0;
     padding: 0;
     
-    /* Ocultar el scroll horizontal y vertical por completo */
     overflow: hidden; 
   }
  
@@ -62,7 +60,7 @@
  
   .circulo {
     display: flex;
-    justify-content: center;  /* centra horizontalmente */
+    justify-content: center;  
     align-items: center;
     width: 2vw;
     height: 2vw;
@@ -74,7 +72,7 @@
   }
 
   .circulo img{
-    width: 80%;       /* 60% del círculo */
+    width: 80%;       
     height: auto;
     display: block;
   }
@@ -114,11 +112,11 @@
 
   .sacas-p{
     
-        background: none;    /* Quita el fondo gris predeterminado */
-        border: none;        /* Quita el borde cuadrado predeterminado */
-        padding: 0;          /* Quita el espacio interno por defecto si es necesario */
-        cursor: pointer;     /* Hace que el cursor cambie a una mano al pasar por encima */
-        outline: none;       /* Quita el borde de selección al hacer clic */
+        background: none;   
+        border: none;        
+        padding: 0;          
+        cursor: pointer;     
+        outline: none;       
     
   }
 
