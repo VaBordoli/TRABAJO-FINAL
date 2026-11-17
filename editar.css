@@ -2,21 +2,20 @@
 
 body { background: #e8e8e8; min-height: 100vh; }
 
-/* Barra superior */
-.barra { 
+.barra {
   position: relative;
   background: #a5a3a1;
-   height: 38px; 
-   display: flex; 
-   align-items: center; 
-   padding: 0 12px;
-  }
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
 
 .circulo-barra {
   position: absolute;
   right: 96%;
   display: flex;
-  justify-content: center;  /* centra horizontalmente */
+  justify-content: center;
   align-items: center;
   width: 2vw;
   height: 2vw;
@@ -24,16 +23,15 @@ body { background: #e8e8e8; min-height: 100vh; }
   background: #d9d9d9;
 }
 
-.circulo-barra img{
-  width: 80%;       /* 60% del círculo */
+.circulo-barra img {
+  width: 80%;
   height: auto;
   display: block;
 }
 
-/* Título */
 .titulo {
   width: min(793px, 90%);
-  margin: 46px auto 22px;
+  margin: 30px auto 18px;
   background: #d9d9d9;
   text-align: center;
   font-size: 24px;
@@ -41,8 +39,7 @@ body { background: #e8e8e8; min-height: 100vh; }
   padding: 10px 0;
 }
 
-/* Paneles */
-.paneles { display: flex; flex-direction: column; align-items: center; padding-bottom: 40px; }
+.paneles { display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; }
 .contenedor-paneles { display: flex; gap: 120px; justify-content: center; flex-wrap: wrap; }
 
 .panel {
@@ -51,7 +48,7 @@ body { background: #e8e8e8; min-height: 100vh; }
   border-radius: 8px;
   width: 454px;
   min-height: 360px;
-  padding: 30px 20px;
+  padding: 26px 20px;
 }
 .punto-panel { position: absolute; top: 10px; left: 10px; width: 20px; height: 20px; border-radius: 50%; background: #9e9e9e; }
 
@@ -59,16 +56,15 @@ body { background: #e8e8e8; min-height: 100vh; }
   background: #d9d9d9;
   border-radius: 20px;
   width: 280px;
-  margin: 0 auto 40px;
+  margin: 0 auto 28px;
   text-align: center;
   font-weight: 400;
   font-size: 18px;
   padding: 9px 0;
 }
 
-/* Campos */
 .fila-campo { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 48px; }
-.fila-valor { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px; }
+.fila-valor { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 12px; }
 .circulo { width: 26px; height: 26px; border-radius: 50%; background: #9e9e9e; flex-shrink: 0; }
 
 .pildora {
@@ -85,12 +81,10 @@ body { background: #e8e8e8; min-height: 100vh; }
 .pildora::placeholder { color: #777; }
 .pildora:focus { box-shadow: 0 0 0 2px #7a7a7a; }
 
-/* Campo bloqueado (sensor) */
 .pildora[readonly] { cursor: not-allowed; color: #555; }
 .candado { width: 26px; height: 26px; color: #7a7a7a; flex-shrink: 0; }
 
-/* Min / Max */
-.par-limites { display: flex; justify-content: space-around; margin-bottom: 26px; }
+.par-limites { display: flex; justify-content: space-around; margin-bottom: 18px; }
 .limite { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .limite .pildora { width: 172px; }
 .botones-mini { display: flex; gap: 14px; }
@@ -103,7 +97,6 @@ body { background: #e8e8e8; min-height: 100vh; }
 }
 .mini:hover { background: #7a7a7a; }
 
-/* Botón guardar */
 .zona-guardar { margin-top: 14px; display: flex; justify-content: center; }
 .boton-guardar {
   display: flex; align-items: center; gap: 8px;

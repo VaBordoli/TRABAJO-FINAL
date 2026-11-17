@@ -56,6 +56,10 @@ form.addEventListener('submit', (e) => {
   localStorage.setItem(`${nombreParcela}: Temperatura Min`, leer('temperatura-min'));
   localStorage.setItem(`${nombreParcela}: Temperatura Max`, leer('temperatura-max'));
 
+  localStorage.setItem(`${nombreParcela}: Valor Corriente`, leer('corriente'));
+  localStorage.setItem(`${nombreParcela}: Corriente Min`, leer('corriente-min'));
+  localStorage.setItem(`${nombreParcela}: Corriente Max`, leer('corriente-max'));
+
   const urlParams = new URLSearchParams(window.location.search);
   const itemsParam = urlParams.get('items');
   const itemsExistentes = itemsParam ? JSON.parse(decodeURIComponent(itemsParam)) : [];

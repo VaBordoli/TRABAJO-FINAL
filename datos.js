@@ -1,4 +1,3 @@
-
 const MODO_PRUEBA = true;
 
 
@@ -6,7 +5,8 @@ const API_URL = 'http://localhost:3000/api/datos';
 
 const RANGOS_PRUEBA = {
   temperatura: [0, 40],
-  humedad: [0, 100]
+  humedad: [0, 100],
+  corriente: [0, 20]
 };
 
 
@@ -76,18 +76,26 @@ async function pedirValorActual(parcela) {
   if (MODO_PRUEBA) {
     const t = RANGOS_PRUEBA.temperatura;
     const h = RANGOS_PRUEBA.humedad;
+    const c = RANGOS_PRUEBA.corriente;
     datos = {
       temperatura: numeroAlAzar(t[0], t[1]),
-      humedad: numeroAlAzar(h[0], h[1])
+      humedad: numeroAlAzar(h[0], h[1]),
+      corriente: numeroAlAzar(c[0], c[1])
     };
   } else {
     const temperaturas = await pedirHistorial(parcela, 'temperatura', '24h');
     const humedades = await pedirHistorial(parcela, 'humedad', '24h');
-    datos = { temperatura: temperaturas[6], humedad: humedades[6] };
+    const corrientes = await pedirHistorial(parcela, 'corriente', '24h');
+    datos = {
+      temperatura: temperaturas[6],
+      humedad: humedades[6],
+      corriente: corrientes[6]
+    };
   }
 
   if (datos.temperatura !== null) guardarValor(parcela, 'temperatura', datos.temperatura);
   if (datos.humedad !== null) guardarValor(parcela, 'humedad', datos.humedad);
+  if (datos.corriente !== null) guardarValor(parcela, 'corriente', datos.corriente);
 
   return datos;
 }

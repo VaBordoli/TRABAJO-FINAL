@@ -9,9 +9,7 @@
 <body>
   <header class="barra">
     <a class="circulo-barra" id="link-regresar" href="Home.html" title="Volver">
-
-     <img src="img/logo.png" alt="Logo ">
- 
+      <img src="img/logo.png" alt="Logo ">
     </a>
   </header>
 
@@ -20,7 +18,6 @@
   <form id="form-editar" class="paneles">
     <div class="contenedor-paneles">
 
-      <!-- PANEL IZQUIERDO -->
       <section class="panel">
         <span class="punto-panel"></span>
         <h2 class="subtitulo">Nombre y Parcelas</h2>
@@ -33,7 +30,6 @@
         <div class="fila-campo">
           <span class="circulo"></span>
           <input type="text" id="nSensor" class="pildora" placeholder="Nombre del Sensor" readonly>
-          <!-- Candado -->
           <svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="11" width="16" height="10" rx="1.5"/>
             <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
@@ -42,26 +38,24 @@
         </div>
       </section>
 
-      <!-- PANEL DERECHO -->
       <section class="panel">
         <span class="punto-panel"></span>
         <h2 class="subtitulo">Valores Predeterminados</h2>
 
-        <!-- HUMEDAD -->
         <div class="fila-valor">
           <span class="circulo"></span>
-          <input type="text" id="humedad" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Humedad" inputmode="numeric">
+          <input type="text" id="humedad" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Humedad" inputmode="numeric" autocomplete="off">
         </div>
         <div class="par-limites">
           <div class="limite">
-            <input type="text" id="humedad-min" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Min." inputmode="numeric">
+            <input type="text" id="humedad-min" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
             <div class="botones-mini">
               <button type="button" class="mini" data-target="humedad-min" data-paso="-1">−</button>
               <button type="button" class="mini" data-target="humedad-min" data-paso="1">+</button>
             </div>
           </div>
           <div class="limite">
-            <input type="text" id="humedad-max" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Max" inputmode="numeric">
+            <input type="text" id="humedad-max" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
             <div class="botones-mini">
               <button type="button" class="mini" data-target="humedad-max" data-paso="-1">−</button>
               <button type="button" class="mini" data-target="humedad-max" data-paso="1">+</button>
@@ -69,24 +63,44 @@
           </div>
         </div>
 
-        <!-- TEMPERATURA -->
         <div class="fila-valor">
           <span class="circulo"></span>
-          <input type="text" id="temperatura" class="pildora campo-num" data-sufijo="°C" placeholder="Temperatura" inputmode="numeric">
+          <input type="text" id="temperatura" class="pildora campo-num" data-sufijo="°C" placeholder="Temperatura" inputmode="numeric" autocomplete="off">
         </div>
         <div class="par-limites">
           <div class="limite">
-            <input type="text" id="temperatura-min" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Min." inputmode="numeric">
+            <input type="text" id="temperatura-min" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
             <div class="botones-mini">
               <button type="button" class="mini" data-target="temperatura-min" data-paso="-1">−</button>
               <button type="button" class="mini" data-target="temperatura-min" data-paso="1">+</button>
             </div>
           </div>
           <div class="limite">
-            <input type="text" id="temperatura-max" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Max" inputmode="numeric">
+            <input type="text" id="temperatura-max" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
             <div class="botones-mini">
               <button type="button" class="mini" data-target="temperatura-max" data-paso="-1">−</button>
               <button type="button" class="mini" data-target="temperatura-max" data-paso="1">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="fila-valor">
+          <span class="circulo"></span>
+          <input type="text" id="corriente" class="pildora campo-num" data-sufijo="A" placeholder="Corriente" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="par-limites">
+          <div class="limite">
+            <input type="text" id="corriente-min" class="pildora campo-num" data-sufijo="A" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
+            <div class="botones-mini">
+              <button type="button" class="mini" data-target="corriente-min" data-paso="-1">−</button>
+              <button type="button" class="mini" data-target="corriente-min" data-paso="1">+</button>
+            </div>
+          </div>
+          <div class="limite">
+            <input type="text" id="corriente-max" class="pildora campo-num" data-sufijo="A" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
+            <div class="botones-mini">
+              <button type="button" class="mini" data-target="corriente-max" data-paso="-1">−</button>
+              <button type="button" class="mini" data-target="corriente-max" data-paso="1">+</button>
             </div>
           </div>
         </div>

@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(item => {
       const p = item.parcela;
 
-      ['Temperatura', 'Humedad'].forEach(tipo => {
+      ['Temperatura', 'Humedad', 'Corriente'].forEach(tipo => {     
         const valor = leerNumero(`${p}: Valor ${tipo}`);
         const min = leerNumero(`${p}: ${tipo} Min`);
         const max = leerNumero(`${p}: ${tipo} Max`);
