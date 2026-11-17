@@ -182,4 +182,21 @@
       cursor: pointer;
       
        }
+
+
+       .eliminar-cuenta {
+        position: absolute;
+        top: 71%;
+        right: 18%;
+        height: 9vh;
+        width: 5%;
+        cursor: pointer;
+      }
+      
+      .eliminar-cuenta img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
         
