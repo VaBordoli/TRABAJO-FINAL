@@ -8,53 +8,64 @@
 </head>
 <body>
 
-
     <div class="ventana">
 
-
         <header class="barra-titulo">
-          <button type="button" class="circulo" id="boton-circulo">
-                    <img src="img/logo.png" alt="Logo ">
-              </button>
-            </header>
-       
-          </button>
+            <button type="button" class="circulo" id="boton-circulo">
+                <img src="img/logo.png" alt="Logo">
+            </button>
         </header>
-   
+
         <main class="contenido">
-    <section class="NOSEAMIGO">
-          <div class="campo-texto"> "Perfil de Usuario"</div>
-          <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Nombre Usuario" required>
-          <a href="Editar-Nombre.html">
-          <img src="img/lapiz-editar.png" alt="Editar" id="nombre-editar" class="editar-nombre">
-        </a>
+            <section class="NOSEAMIGO">
+                <div class="campo-texto"> "Perfil de Usuario"</div>
 
-          <input class="campo-texto" id="mail-usuario" type="text" placeholder="Mail" required>
-          <a href="Editar-Mail.html">
-          <img src="img/lapiz-editar.png" alt="Editar" id="mail-editar" class="editar-mail">
-          </a>
+                <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Nombre Usuario" required>
+                <a href="Editar-Nombre.html">
+                    <img src="img/lapiz-editar.png" alt="Editar" id="nombre-editar" class="editar-nombre">
+                </a>
 
-          <input class="campo-texto" id="contra-usuario" type="text" placeholder="Contraseña" required>
-          <a href="Editar-Contra.html">
-          <img src="img/lapiz-editar.png" alt="Editar" id="contra-editar" class="editar-contra">
-          </a>
+                <input class="campo-texto" id="mail-usuario" type="text" placeholder="Mail" required>
+                <a href="Editar-Mail.html">
+                    <img src="img/lapiz-editar.png" alt="Editar" id="mail-editar" class="editar-mail">
+                </a>
 
-   </section>
+                <input class="campo-texto" id="contra-usuario" type="text" placeholder="Contraseña" required>
+                <a href="Editar-Contra.html">
+                    <img src="img/lapiz-editar.png" alt="Editar" id="contra-editar" class="editar-contra">
+                </a>
+            </section>
 
-   <button id="cerrar-sesion" class="sacar-p boton">
-    <div class="p-b-cerrar-sesion"> Cerrar Sesion</div>
-   </button>
+            <button id="cerrar-sesion" class="sacas-p boton">
+                <div class="p-b-cerrar-sesion"> Cerrar Sesion</div>
+            </button>
 
-   <button type="button" id="eliminar-cuenta" class="eliminar-cuenta sacas-p" aria-label="Eliminar cuenta">
-    <img src="img/tacho.png" alt="Eliminar cuenta" id="eliminar-cuenta-icono">
-  </button>
+            <!-- Botón eliminar cuenta (abre el pop-up) -->
+            <button type="button" id="eliminar-cuenta" class="eliminar-cuenta sacas-p" aria-label="Eliminar cuenta">
+                <img src="img/tacho.png" alt="Eliminar cuenta" id="eliminar-cuenta-icono">
+            </button>
 
-   <a href="Home.html" id="link-regresar" >
-    <button class="continuar sacar-p">Continuar</button>
-</a>
+            <a href="Home.html" id="link-regresar">
+                <button class="continuar sacas-p">Continuar</button>
+            </a>
         </main>
-      </div>
-      
+    </div>
+
+    <div class="modal-overlay" id="modal-eliminar" hidden>
+        <div class="modal-caja">
+            <p class="modal-consigna">Confirmar contraseña para borrar cuenta</p>
+
+            <input class="modal-input" id="contra-confirmar" type="password" placeholder="Contraseña" autocomplete="off">
+
+            <p class="modal-mensaje" id="mensaje-eliminar"></p>
+
+            <div class="modal-botones">
+                <button type="button" class="modal-boton" id="cancelar-eliminar">Cancelar</button>
+                <button type="button" class="modal-boton" id="confirmar-eliminar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="perfil.js"></script>
 </body>
 </html>
