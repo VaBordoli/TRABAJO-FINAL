@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const datos = await pedirValorActual(parcela);
       mostrar('temperatura', datos.temperatura);
       mostrar('humedad', datos.humedad);
+      mostrar('corriente', datos.corriente);
     } catch (error) {
       mostrar('temperatura', null);
       mostrar('humedad', null);
+      mostrar('corriente', null);
       console.error(error);
     }
   }
