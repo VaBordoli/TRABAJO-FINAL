@@ -1,15 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  
-  const API_URL = 'http://localhost:3000/api/datos';
+  if (!requerirSesion()) return;
 
   const INTERVALO_REFRESCO_MS = 30000;
 
-  const MODO_PRUEBA = true;
-
-  
   const ESCALAS = {
-    temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40], claveMin: 'Temperatura Min', claveMax: 'Temperatura Max' },
-    humedad:     { unidad: '%',  niveles: [0, 25, 50, 75, 100], claveMin: 'Humedad Min',     claveMax: 'Humedad Max' }
+    temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40] },
+    humedad:     { unidad: '%',  niveles: [0, 25, 50, 75, 100] }
   };
 
   const ETIQUETAS_X = {
@@ -19,20 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const params = new URLSearchParams(window.location.search);
   const nombreParcela = params.get('parcela') || '';
-  const itemsParam = params.get('items');
+  const idCampo = params.get('id') || '';
+  const dispositivo = params.get('dispositivo') || '';
 
   document.getElementById('titulo-informacion').textContent = `Campo “${nombreParcela}”`;
 
-  const linkRegresar = document.getElementById('link-regresar');
-  if (itemsParam) {
-    const regresoParams = new URLSearchParams();
-    regresoParams.set('items', itemsParam);
-    linkRegresar.href = 'Home.html?' + regresoParams.toString();
-  }
-
   const estado = { tipo: 'temperatura', rango: '24h' };
-  let numeroPedido = 0;                       
-  let ultimosValores = Array(7).fill(null);   
+  let numeroPedido = 0;
+  let ultimosValores = Array(7).fill(null);
+  let rangos = null; // límites configurados en el back
 
   const svg = document.getElementById('grafico');
   const mensaje = document.getElementById('mensaje-grafico');
@@ -51,24 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
   activarToggle('toggle-tipo', 'tipo', 'tipo');
   activarToggle('toggle-rango', 'rango', 'rango');
 
-  
   async function pedirValores() {
-    return await pedirHistorial(nombreParcela, estado.tipo, estado.rango);
+    return await pedirHistorial(dispositivo, estado.tipo, estado.rango);
   }
 
-  
   function obtenerLimites() {
-    const { claveMin, claveMax } = ESCALAS[estado.tipo];
-    const leer = (clave) => {
-      const n = parseFloat(localStorage.getItem(`${nombreParcela}: ${clave}`));
-      return Number.isFinite(n) && n > 0 ? n : null; 
-    };
-    return { min: leer(claveMin), max: leer(claveMax) };
+    const r = rangos && rangos[estado.tipo];
+    const leer = (n) => (Number.isFinite(n) && n > 0 ? n : null);
+    return r ? { min: leer(r.valorminimo), max: leer(r.valormaximo) } : { min: null, max: null };
   }
 
   async function cargarDatos() {
     const mio = ++numeroPedido;
     try {
+      if (!rangos && idCampo) rangos = await pedirRangos(idCampo);
       const valores = await pedirValores();
       if (mio !== numeroPedido) return;
       mensaje.hidden = true;
@@ -147,13 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
   dibujar(Array(7).fill(null));
   cargarDatos();
   if (INTERVALO_REFRESCO_MS > 0) setInterval(cargarDatos, INTERVALO_REFRESCO_MS);
-});
 
-const paramsInfo = new URLSearchParams(window.location.search);
-
-document.getElementById('boton-circulo').addEventListener('click', () => {
-  const nuevos = new URLSearchParams();
-  nuevos.set('parcela', paramsInfo.get('parcela') || '');
-  nuevos.set('items', paramsInfo.get('items') || '');
-  window.location.href = 'campo.html?' + nuevos.toString();
+  // volver a la pantalla del campo (si el botón tiene id; si no, el <a> ya vuelve a Home)
+  const botonCirculo = document.getElementById('boton-circulo');
+  if (botonCirculo) {
+    botonCirculo.addEventListener('click', () => {
+      const nuevos = new URLSearchParams();
+      nuevos.set('id', idCampo);
+      nuevos.set('parcela', nombreParcela);
+      nuevos.set('dispositivo', dispositivo);
+      window.location.href = PAGINAS.campo + '?' + nuevos.toString();
+    });
+  }
 });

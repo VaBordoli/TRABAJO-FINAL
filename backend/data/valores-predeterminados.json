@@ -1,0 +1,32 @@
+[
+  {
+    "id_campo": 2,
+    "humedad": {
+      "valorminimo": 6,
+      "valormaximo": 14
+    },
+    "temperatura": {
+      "valorminimo": 4,
+      "valormaximo": 10
+    },
+    "conductividad": {
+      "valorminimo": 3,
+      "valormaximo": 9
+    }
+  },
+  {
+    "id_campo": 3,
+    "humedad": {
+      "valorminimo": 1,
+      "valormaximo": 2
+    },
+    "temperatura": {
+      "valorminimo": 1,
+      "valormaximo": 3
+    },
+    "conductividad": {
+      "valorminimo": 1,
+      "valormaximo": 3
+    }
+  }
+]

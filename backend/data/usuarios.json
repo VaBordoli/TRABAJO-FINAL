@@ -1,0 +1,8 @@
+[
+  {
+    "id_usuario": 2,
+    "email": "ramdom@gmail.com",
+    "nombredeusuario": "VaBordoli",
+    "contraseña": "scrypt$2400bedbbfc91d127414f1ffecb030ef$bcfcf5a1d624b9979ff80809d758eff0f87b6fd3d3dd7ad867fa67bc3fc1b6a417dd6d630e26fbfebf91f09bd6119d6260de2712c3e484217ed1bec916462e4b"
+  }
+]
