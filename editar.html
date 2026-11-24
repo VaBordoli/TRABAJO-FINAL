@@ -44,64 +44,40 @@
 
         <div class="fila-valor">
           <span class="circulo"></span>
-          <input type="text" id="humedad" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Humedad" inputmode="numeric" autocomplete="off">
+          <div class="pildora etiqueta-valor">Humedad</div>
         </div>
         <div class="par-limites">
           <div class="limite">
             <input type="text" id="humedad-min" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="humedad-min" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="humedad-min" data-paso="1">+</button>
-            </div>
           </div>
           <div class="limite">
             <input type="text" id="humedad-max" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="humedad-max" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="humedad-max" data-paso="1">+</button>
-            </div>
           </div>
         </div>
 
         <div class="fila-valor">
           <span class="circulo"></span>
-          <input type="text" id="temperatura" class="pildora campo-num" data-sufijo="°C" placeholder="Temperatura" inputmode="numeric" autocomplete="off">
+          <div class="pildora etiqueta-valor">Temperatura</div>
         </div>
         <div class="par-limites">
           <div class="limite">
             <input type="text" id="temperatura-min" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="temperatura-min" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="temperatura-min" data-paso="1">+</button>
-            </div>
           </div>
           <div class="limite">
             <input type="text" id="temperatura-max" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="temperatura-max" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="temperatura-max" data-paso="1">+</button>
-            </div>
           </div>
         </div>
 
         <div class="fila-valor">
           <span class="circulo"></span>
-          <input type="text" id="corriente" class="pildora campo-num" data-sufijo="S" placeholder="Corriente" inputmode="numeric" autocomplete="off">
+          <div class="pildora etiqueta-valor">Corriente</div>
         </div>
         <div class="par-limites">
           <div class="limite">
             <input type="text" id="corriente-min" class="pildora campo-num" data-sufijo="S" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="corriente-min" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="corriente-min" data-paso="1">+</button>
-            </div>
           </div>
           <div class="limite">
             <input type="text" id="corriente-max" class="pildora campo-num" data-sufijo="S" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
-            <div class="botones-mini">
-              <button type="button" class="mini" data-target="corriente-max" data-paso="-1">−</button>
-              <button type="button" class="mini" data-target="corriente-max" data-paso="1">+</button>
-            </div>
           </div>
         </div>
       </section>
@@ -116,6 +92,6 @@
     </div>
   </form>
 <script src="datos.js"></script>
-  <script src="editar.js"></script>
+  <script src="editar.js?v=3"></script>
 </body>
 </html>

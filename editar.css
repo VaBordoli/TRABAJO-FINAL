@@ -82,21 +82,12 @@ body { background: #e8e8e8; min-height: 100vh; }
 .pildora:focus { box-shadow: 0 0 0 2px #7a7a7a; }
 
 .pildora[readonly] { cursor: not-allowed; color: #555; }
+.etiqueta-valor { cursor: default; color: #555; }
 .candado { width: 26px; height: 26px; color: #7a7a7a; flex-shrink: 0; }
 
 .par-limites { display: flex; justify-content: space-around; margin-bottom: 18px; }
 .limite { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .limite .pildora { width: 172px; }
-.botones-mini { display: flex; gap: 14px; }
-.mini {
-  width: 16px; height: 16px;
-  border: none; border-radius: 50%;
-  background: #9e9e9e; color: #222;
-  font-size: 12px; line-height: 16px; padding: 0;
-  cursor: pointer;
-}
-.mini:hover { background: #7a7a7a; }
-
 .zona-guardar { margin-top: 14px; display: flex; justify-content: center; }
 .boton-guardar {
   display: flex; align-items: center; gap: 8px;

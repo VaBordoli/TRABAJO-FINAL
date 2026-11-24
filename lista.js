@@ -18,13 +18,6 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
     }
   });
 });
-document.querySelectorAll('button[data-target]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    const input = document.getElementById(btn.dataset.target);
-    mostrar(input, valorNumerico(input) + Number(btn.dataset.paso));
-  });
-});
-
 const idUsuario = requerirSesion();
 const form = document.getElementById('form-agregar');
 form.addEventListener('submit', async (e) => {

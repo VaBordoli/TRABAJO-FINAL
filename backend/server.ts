@@ -130,9 +130,10 @@ function requireRanges(body: Record<string, any>): Record<'humedad' | 'temperatu
     conductividad: { valorminimo: 0, valormaximo: 0 }
   };
   for (const key of ['humedad', 'temperatura', 'conductividad'] as const) {
-    const min = Number(body?.[key]?.valorminimo);
-    const max = Number(body?.[key]?.valormaximo);
-    if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) {
+    const min = body?.[key]?.valorminimo;
+    const max = body?.[key]?.valormaximo;
+    if (typeof min !== 'number' || !Number.isFinite(min) ||
+        typeof max !== 'number' || !Number.isFinite(max) || min > max) {
       throw new HttpError(400, 'Revisá los valores mínimos y máximos');
     }
     result[key] = { valorminimo: min, valormaximo: max };
@@ -404,8 +405,8 @@ app.post('/api/sensores/datos', (req, res) => {
     conductividad: 0
   };
   for (const key of ['humedad', 'temperatura', 'conductividad'] as const) {
-    const value = Number(measures[key]);
-    if (measures[key] === undefined || !Number.isFinite(value)) {
+    const value = measures[key];
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
       throw new HttpError(400, 'Las mediciones deben ser números');
     }
     medidas_tierras[key] = value;

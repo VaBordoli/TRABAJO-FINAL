@@ -18,13 +18,6 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
     }
   });
 });
-document.querySelectorAll('button[data-target]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    const input = document.getElementById(btn.dataset.target);
-    mostrar(input, valorNumerico(input) + Number(btn.dataset.paso));
-  });
-});
-
 (async function () {
   const idUsuario = requerirSesion();
   if (!idUsuario) return;
@@ -69,20 +62,6 @@ document.querySelectorAll('button[data-target]').forEach(function (btn) {
         mostrar(document.getElementById(id), Number(rangos[tipo][lado]) || 0);
       });
     }
-  } catch (err) {
-    console.error(err);
-  }
-
-  // Valores actuales: solo lectura (los manda el sensor)
-  try {
-    const actual = await pedirValorActual(campo.id_dispositivo);
-    [['humedad', actual.humedad], ['temperatura', actual.temperatura], ['corriente', actual.corriente]]
-      .forEach(([id, valor]) => {
-        const input = document.getElementById(id);
-        mostrar(input, Math.round(Number(valor)) || 0);
-        input.readOnly = true;
-        document.querySelectorAll(`button[data-target="${id}"]`).forEach(b => { b.disabled = true; });
-      });
   } catch (err) {
     console.error(err);
   }
