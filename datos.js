@@ -1,6 +1,6 @@
 // ===== Capa de comunicación con el back (compartida por todas las páginas) =====
 const API_URL = 'http://localhost:3000';
-const MODO_PRUEBA = true; // Cambiar a false para usar las mediciones reales del servidor.
+const MODO_PRUEBA = false; // Cambiar a false para usar las mediciones reales del servidor.
 const RANGOS_PRUEBA = {
   temperatura: { valorminimo: 0, valormaximo: 40 },
   humedad: { valorminimo: 0, valormaximo: 100 },
@@ -79,8 +79,8 @@ function historialDePrueba(tipo) {
   const clave = tipo === 'corriente' ? 'conductividad' : tipo;
   const { valorminimo, valormaximo } = RANGOS_PRUEBA[clave];
   const amplitud = valormaximo - valorminimo;
-  const valores = Array.from({ length: 7 }, (_, i) => {
-    const proporcion = 0.1 + (0.8 * i) / 6 + (Math.random() - 0.5) * 0.05;
+  const valores = Array.from({ length: 5 }, (_, i) => {
+    const proporcion = 0.1 + (0.8 * i) / 4 + (Math.random() - 0.5) * 0.05;
     return Number((valorminimo + amplitud * proporcion).toFixed(1));
   });
 
@@ -141,27 +141,37 @@ async function pedirValorActual(dispositivo) {
   }
 }
 
-// Devuelve 7 valores (promedios por tramo) para el gráfico de Información.
-// tipo: 'temperatura' | 'humedad' | 'corriente'; rango: '24h' | '7d'. null = sin datos en ese tramo.
+// Devuelve 5 valores (promedios por tramo) para el gráfico de Información.
+// tipo: 'temperatura' | 'humedad' | 'corriente'; rango: '30s' | '7d'. null = sin datos en ese tramo.
 async function pedirHistorial(dispositivo, tipo, rango) {
   if (MODO_PRUEBA) return historialDePrueba(tipo);
   const r = await api('GET', `/api/sensores/${encodeURIComponent(dispositivo)}/datos`,
     { query: { id_usuario: obtenerIdUsuario() } });
   const clave = tipo === 'corriente' ? 'conductividad' : tipo;
-  const ventana = (rango === '24h' ? 24 : 24 * 7) * 3600 * 1000;
-  const paso = ventana / 6;
-  const inicio = Date.now() - ventana;
+  const dia = 24 * 3600 * 1000;
+  const edades = rango === '30s'
+    ? [30_000, 20_000, 10_000, 5_000, 0]
+    : [7 * dia, 5 * dia, 3 * dia, dia, 12 * 3600 * 1000];
+  const ventana = edades[0];
   const ahora = Date.now();
-  const sumas = Array(7).fill(0);
-  const cuentas = Array(7).fill(0);
+  const inicio = ahora - ventana;
+  const puntos = edades.map(edad => ahora - edad);
+  const tramos = puntos.map((punto, i) => ({
+    inicio: i === 0 ? inicio : (puntos[i - 1] + punto) / 2,
+    fin: i === puntos.length - 1 ? ahora + 1 : (punto + puntos[i + 1]) / 2
+  }));
+  const sumas = Array(5).fill(0);
+  const cuentas = Array(5).fill(0);
   r.datos.forEach(d => {
     const t = typeof d.dia_hora === 'number' ? d.dia_hora : new Date(d.dia_hora).getTime();
     const original = d.medidas_tierras && d.medidas_tierras[clave];
     const v = Number(original);
     if (original === null || original === undefined || original === '' ||
         !Number.isFinite(t) || !Number.isFinite(v) || t < inicio || t > ahora + 5 * 60 * 1000) return;
-    const i = Math.min(6, Math.max(0, Math.round((Math.min(t, ahora) - inicio) / paso)));
-    if (i < 0 || i > 6) return;
+    const tiempo = Math.min(t, ahora);
+    const i = tramos.findIndex((tramo, indice) =>
+      tiempo >= tramo.inicio && (indice === tramos.length - 1 ? tiempo <= tramo.fin : tiempo < tramo.fin));
+    if (i < 0) return;
     sumas[i] += v;
     cuentas[i]++;
   });

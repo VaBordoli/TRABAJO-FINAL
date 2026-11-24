@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informacion</title>
-    <link rel="stylesheet" href="Informacion.css">
+    <link rel="stylesheet" href="Informacion.css?v=8">
 </head>
 <body>
     <div class="ventana">
@@ -29,20 +29,21 @@
                     </div>
 
                     <div class="grupo-toggle" id="toggle-rango">
-                        <button type="button" class="opcion activa" data-rango="24h">24 Horas</button>
-                        <button type="button" class="opcion" data-rango="7d">7 Días</button>
+                        <button type="button" class="opcion activa" data-rango="30s">Últimos 30 s</button>
+                        <button type="button" class="opcion" data-rango="7d">7 días</button>
                     </div>
                 </div>
 
                 <div class="grafico-caja">
-                    <svg id="grafico" viewBox="0 0 1000 430" role="img" aria-label="Gráfico de línea"></svg>
+                    <canvas id="grafico" role="img" aria-label="Gráfico de línea"></canvas>
                     <p id="mensaje-grafico" class="mensaje" hidden></p>
                     <p id="mensaje-rangos" class="mensaje-rangos" hidden></p>
                 </div>
             </div>
         </div>
     </div>
-    <script src="datos.js?v=7"></script>
-    <script src="Informacion.js?v=7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="datos.js?v=8"></script>
+    <script src="Informacion.js?v=8"></script>
 </body>
 </html>
