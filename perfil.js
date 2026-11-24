@@ -31,17 +31,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   const botonEliminar = document.getElementById('eliminar-cuenta');
   const modal = document.getElementById('modal-eliminar');
   const inputConfirmar = document.getElementById('contra-confirmar');
+  const restablecerVisibilidad = configurarVisibilidadContrasena(
+    'contra-confirmar',
+    'alternar-contra-confirmar'
+  );
   const mensaje = document.getElementById('mensaje-eliminar');
   const botonCancelar = document.getElementById('cancelar-eliminar');
   const botonConfirmar = document.getElementById('confirmar-eliminar');
 
   function abrirModal() {
+    restablecerVisibilidad();
     inputConfirmar.value = '';
     mensaje.textContent = '';
     modal.hidden = false;
     inputConfirmar.focus();
   }
   function cerrarModal() {
+    restablecerVisibilidad();
     modal.hidden = true;
     inputConfirmar.value = '';
   }

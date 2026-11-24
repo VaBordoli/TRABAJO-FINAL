@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="perfil.css?v=3">
 </head>
 <body>
 
@@ -23,11 +23,26 @@
         <main class="contenido">
     <section class="NOSEAMIGO">
           <div class="campo-texto"> "Editar Contraseña"</div>
-          <input class="campo-texto" id="nueva-contra" type="text" placeholder="Nueva Contraseña" required>
+          <div class="control-contrasena-editar">
+            <input class="campo-texto" id="nueva-contra" type="password" placeholder="Nueva Contraseña" autocomplete="new-password" required>
+            <button type="button" class="boton-visibilidad-perfil" id="alternar-nueva-contra" aria-label="Mostrar contraseña" aria-pressed="false">
+              <img src="img/contrasena-oculta.png" alt="">
+            </button>
+          </div>
 
-          <input class="campo-texto" id="intro-contra" type="text" placeholder="Introducir Contraseña" required>
+          <div class="control-contrasena-editar">
+            <input class="campo-texto" id="intro-contra" type="password" placeholder="Introducir Contraseña" autocomplete="current-password" required>
+            <button type="button" class="boton-visibilidad-perfil" id="alternar-intro-contra" aria-label="Mostrar contraseña" aria-pressed="false">
+              <img src="img/contrasena-oculta.png" alt="">
+            </button>
+          </div>
 
-          <input class="campo-texto" id="confir-contra" type="text" placeholder="Confirmar Contraseña" required>
+          <div class="control-contrasena-editar">
+            <input class="campo-texto" id="confir-contra" type="password" placeholder="Confirmar Contraseña" autocomplete="new-password" required>
+            <button type="button" class="boton-visibilidad-perfil" id="alternar-confir-contra" aria-label="Mostrar contraseña" aria-pressed="false">
+              <img src="img/contrasena-oculta.png" alt="">
+            </button>
+          </div>
 
    </section>
 
@@ -40,7 +55,7 @@
 </a>
         </main>
       </div>
-      <script src="datos.js"></script>
-    <script src="Editar-Contra.js"></script>
+      <script src="datos.js?v=3"></script>
+    <script src="Editar-Contra.js?v=2"></script>
 </body>
 </html>

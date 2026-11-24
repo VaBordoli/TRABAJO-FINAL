@@ -28,5 +28,50 @@
       "valorminimo": 1,
       "valormaximo": 3
     }
+  },
+  {
+    "id_campo": 4,
+    "humedad": {
+      "valorminimo": 10,
+      "valormaximo": 100
+    },
+    "temperatura": {
+      "valorminimo": 10,
+      "valormaximo": 11
+    },
+    "conductividad": {
+      "valorminimo": 10,
+      "valormaximo": 100
+    }
+  },
+  {
+    "id_campo": 5,
+    "humedad": {
+      "valorminimo": 7,
+      "valormaximo": 70
+    },
+    "temperatura": {
+      "valorminimo": 7,
+      "valormaximo": 34
+    },
+    "conductividad": {
+      "valorminimo": 7,
+      "valormaximo": 70
+    }
+  },
+  {
+    "id_campo": 6,
+    "humedad": {
+      "valorminimo": 19,
+      "valormaximo": 41
+    },
+    "temperatura": {
+      "valorminimo": 15,
+      "valormaximo": 36
+    },
+    "conductividad": {
+      "valorminimo": 5,
+      "valormaximo": 15
+    }
   }
 ]

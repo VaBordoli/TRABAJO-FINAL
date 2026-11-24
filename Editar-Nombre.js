@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  configurarVisibilidadContrasena('intro-contra', 'alternar-intro-contra');
   configurarEdicionUsuario({
     dato: 'nombredeusuario',
     idNuevo: 'nuevo-usuario',

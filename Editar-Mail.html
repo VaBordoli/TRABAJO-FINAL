@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="perfil.css?v=3">
 </head>
 <body>
 
@@ -25,7 +25,12 @@
           <div class="campo-texto"> "Editar Mail"</div>
           <input class="campo-texto" id="nuevo-mail" type="text" placeholder="Nuevo Mail" required>
 
-          <input class="campo-texto" id="intro-contra" type="text" placeholder="Introducir Contraseña" required>
+          <div class="control-contrasena-editar">
+            <input class="campo-texto" id="intro-contra" type="password" placeholder="Introducir Contraseña" autocomplete="current-password" required>
+            <button type="button" class="boton-visibilidad-perfil" id="alternar-intro-contra" aria-label="Mostrar contraseña" aria-pressed="false">
+              <img src="img/contrasena-oculta.png" alt="">
+            </button>
+          </div>
 
 
           <input class="campo-texto" id="confir-mail" type="text" placeholder="Confirmar Mail" required>
@@ -41,7 +46,7 @@
 </a>
         </main>
       </div>
-      <script src="datos.js"></script>
-    <script src="Editar-Mail.js"></script>
+      <script src="datos.js?v=3"></script>
+    <script src="Editar-Mail.js?v=2"></script>
 </body>
 </html>

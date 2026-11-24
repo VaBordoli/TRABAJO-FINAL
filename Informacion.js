@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (!requerirSesion()) return;
 
-  const INTERVALO_REFRESCO_MS = 30000;
+  const INTERVALO_REFRESCO_MS = 5000;
 
   const ESCALAS = {
     temperatura: { unidad: '°C', niveles: [0, 10, 20, 30, 40] },
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const svg = document.getElementById('grafico');
   const mensaje = document.getElementById('mensaje-grafico');
+  const mensajeRangos = document.getElementById('mensaje-rangos');
 
   function activarToggle(idContenedor, atributo, clave) {
     const botones = document.querySelectorAll(`#${idContenedor} .opcion`);
@@ -48,23 +49,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function obtenerLimites() {
     const r = rangos && rangos[estado.tipo];
-    const leer = (n) => (Number.isFinite(n) && n > 0 ? n : null);
+    const leer = (n) => {
+      if (n === null || n === undefined || n === '') return null;
+      const valor = Number(n);
+      return Number.isFinite(valor) ? valor : null;
+    };
     return r ? { min: leer(r.valorminimo), max: leer(r.valormaximo) } : { min: null, max: null };
   }
 
   async function cargarDatos() {
     const mio = ++numeroPedido;
     try {
+      if (!MODO_PRUEBA && (!idCampo || !dispositivo)) {
+        throw new Error('No se recibió el ID del campo o del sensor para el gráfico');
+      }
       if (!rangos && idCampo) rangos = await pedirRangos(idCampo);
       const valores = await pedirValores();
       if (mio !== numeroPedido) return;
-      mensaje.hidden = true;
+      const hayDatos = valores.some(valor => Number.isFinite(valor));
+      const limites = obtenerLimites();
+      const hayLimites = limites.min !== null && limites.max !== null;
+      const avisos = [];
+      if (MODO_PRUEBA) avisos.push('Modo de prueba: datos simulados');
+      if (!hayLimites) avisos.push('No se pudieron cargar los límites; verificá el campo y la sesión');
+      mensajeRangos.textContent = avisos.join(' | ');
+      mensajeRangos.hidden = avisos.length === 0;
+      mensaje.textContent = hayDatos ? '' : 'No hay mediciones en el período seleccionado';
+      mensaje.hidden = hayDatos;
       dibujar(valores);
     } catch (error) {
       if (mio !== numeroPedido) return;
       console.error('Error al pedir datos:', error);
       dibujar(Array(7).fill(null));
-      mensaje.textContent = 'No se pudieron obtener los datos';
+      mensaje.textContent = error.message || 'No se pudieron obtener los datos';
       mensaje.hidden = false;
     }
   }

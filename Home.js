@@ -11,10 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const botonInformacion = botones[1];
   const botonEditar = botones[2];
   const botonCirculo = document.getElementById('boton-circulo');
+  const modalNotificacion = document.getElementById('modal-notificacion');
+  const datosNotificacion = document.getElementById('datos-notificacion');
+  const botonesCerrarModal = [
+    document.getElementById('cerrar-modal-notificacion'),
+    document.getElementById('boton-cerrar-notificacion')
+  ];
 
   let campos = [];
   let notificaciones = [];
   let visibles = [];
+  let elementoFocoAnterior = null;
 
   function esc(t) {
     return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       html += `
         <li class="item-lista">
           <div class="marca"></div>
-          <div class="linea notificacion" title="${esc(n.dia_hora)} (valor: ${esc(n.valor)})">Parcela "${esc(nombre)}": ${esc(n.mensaje)}</div>
+          <button type="button" class="linea notificacion" data-i="${i}">Parcela "${esc(nombre)}": ${esc(n.mensaje)}</button>
           <button type="button" class="borrar-notificacion" data-i="${i}">✕</button>
         </li>
       `;
@@ -91,13 +98,53 @@ document.addEventListener('DOMContentLoaded', () => {
     listaChicaEl.innerHTML = html;
   }
 
+  function cerrarDetalleNotificacion() {
+    modalNotificacion.hidden = true;
+    datosNotificacion.replaceChildren();
+    if (elementoFocoAnterior instanceof HTMLElement) elementoFocoAnterior.focus();
+  }
+
+  function abrirDetalleNotificacion(notificacion) {
+    const detalles = [
+      ['id', notificacion.id],
+      ['id_dispositivo', notificacion.id_dispositivo],
+      ['dia_hora', notificacion.dia_hora],
+      ['variable', notificacion.variable],
+      ['valor', notificacion.valor],
+      ['mensaje', notificacion.mensaje]
+    ];
+
+    datosNotificacion.innerHTML = detalles.map(([etiqueta, valor]) => {
+      const texto = valor === null || valor === undefined || valor === '' ? '—' : String(valor);
+      return `<dt>${etiqueta}</dt><dd>${esc(texto)}</dd>`;
+    }).join('');
+    elementoFocoAnterior = document.activeElement;
+    modalNotificacion.hidden = false;
+    document.getElementById('cerrar-modal-notificacion').focus();
+  }
+
   listaChicaEl.addEventListener('click', (e) => {
     const boton = e.target.closest('.borrar-notificacion');
-    if (!boton) return;
-    if (!confirm('¿Estás seguro de que cumpliste la consigna?')) return;
-    const n = visibles[Number(boton.dataset.i)];
-    if (n) localStorage.setItem(claveDescarte(n), 'si');
-    renderizarNotificaciones();
+    if (boton) {
+      if (!confirm('¿Estás seguro de que cumpliste la consigna?')) return;
+      const n = visibles[Number(boton.dataset.i)];
+      if (n) localStorage.setItem(claveDescarte(n), 'si');
+      renderizarNotificaciones();
+      return;
+    }
+
+    const notificacion = e.target.closest('.notificacion');
+    if (!notificacion) return;
+    const n = visibles[Number(notificacion.dataset.i)];
+    if (n) abrirDetalleNotificacion(n);
+  });
+
+  botonesCerrarModal.forEach(boton => boton.addEventListener('click', cerrarDetalleNotificacion));
+  modalNotificacion.addEventListener('click', e => {
+    if (e.target === modalNotificacion) cerrarDetalleNotificacion();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modalNotificacion.hidden) cerrarDetalleNotificacion();
   });
 
   async function actualizarNotificaciones() {

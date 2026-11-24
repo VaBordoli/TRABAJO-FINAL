@@ -158,6 +158,19 @@
     border-radius: 6px;
   }
   .mensaje[hidden] { display: none; }
+
+  .mensaje-rangos {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(232, 232, 232, 0.9);
+    font: 600 0.75rem sans-serif;
+  }
+  .mensaje-rangos[hidden] { display: none; }
   
   .grid-h { stroke: #c4c4c4; stroke-width: 2; }
   .grid-v { stroke: #c4c4c4; stroke-width: 3; }

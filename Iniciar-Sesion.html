@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Ejemplo de ventana</title>
 
-  <link rel="stylesheet" href="Iniciar-Sesion.css">
+  <link rel="stylesheet" href="Iniciar-Sesion.css?v=2">
 </head>
 <body>
 
@@ -36,7 +36,12 @@
         <a  class="enlace-boton">
           <div class="boton boton-inferior">
             <div class="pildora">
-              <input type="text" class="franquito" placeholder="Contraseña" >
+              <div class="control-contrasena">
+                <input type="password" id="contra" class="franquito" placeholder="Contraseña" autocomplete="current-password">
+                <button type="button" class="boton-visibilidad" id="alternar-contra" aria-label="Mostrar contraseña" aria-pressed="false">
+                  <img src="img/contrasena-oculta.png" alt="">
+                </button>
+              </div>
             </div>
           </div>
         </a>

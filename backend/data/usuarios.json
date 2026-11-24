@@ -4,5 +4,17 @@
     "email": "ramdom@gmail.com",
     "nombredeusuario": "VaBordoli",
     "contraseña": "scrypt$2400bedbbfc91d127414f1ffecb030ef$bcfcf5a1d624b9979ff80809d758eff0f87b6fd3d3dd7ad867fa67bc3fc1b6a417dd6d630e26fbfebf91f09bd6119d6260de2712c3e484217ed1bec916462e4b"
+  },
+  {
+    "id_usuario": 3,
+    "email": "ojvdve@gmail.com",
+    "nombredeusuario": "messi",
+    "contraseña": "scrypt$28a72d33699ce2186d4da508ec78fe13$57ee682b9a82fe8cc0b9ba00d3f58368fcf3b977ff965346b81b2592a1a4789633727eee446ac0f7efcf7e57b809e75ad62b35bbd7b46cbc84fe4eeb46a4036d"
+  },
+  {
+    "id_usuario": 4,
+    "email": "bcwbw@gmail.com",
+    "nombredeusuario": "PECH",
+    "contraseña": "scrypt$3d082b604a90fb3bc797ad42dcbf8e3b$371de2152d2178be1204d8df87f2043d41497ee75aa87d7baac6e2cbb397862ecb2c60558df8d43b6abfa452e42f52da9f4d37d830cb9e472c2777e767f45036"
   }
 ]

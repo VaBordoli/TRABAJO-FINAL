@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="perfil.css?v=3">
 </head>
 <body>
 
@@ -20,20 +20,26 @@
             <section class="NOSEAMIGO">
                 <div class="campo-texto"> "Perfil de Usuario"</div>
 
-                <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Nombre Usuario" required>
-                <a href="Editar-Nombre.html">
-                    <img src="img/lapiz-editar.png" alt="Editar" id="nombre-editar" class="editar-nombre">
-                </a>
+                <div class="fila-perfil">
+                    <input class="campo-texto" id="nombre-usuario" type="text" placeholder="Nombre Usuario" required>
+                    <a href="Editar-Nombre.html">
+                        <img src="img/lapiz-editar.png" alt="Editar nombre" id="nombre-editar" class="icono-editar">
+                    </a>
+                </div>
 
-                <input class="campo-texto" id="mail-usuario" type="text" placeholder="Mail" required>
-                <a href="Editar-Mail.html">
-                    <img src="img/lapiz-editar.png" alt="Editar" id="mail-editar" class="editar-mail">
-                </a>
+                <div class="fila-perfil">
+                    <input class="campo-texto" id="mail-usuario" type="text" placeholder="Mail" required>
+                    <a href="Editar-Mail.html">
+                        <img src="img/lapiz-editar.png" alt="Editar mail" id="mail-editar" class="icono-editar">
+                    </a>
+                </div>
 
-                <input class="campo-texto" id="contra-usuario" type="text" placeholder="Contraseña" required>
-                <a href="Editar-Contra.html">
-                    <img src="img/lapiz-editar.png" alt="Editar" id="contra-editar" class="editar-contra">
-                </a>
+                <div class="fila-perfil">
+                    <input class="campo-texto" id="contra-usuario" type="text" placeholder="Contraseña" required>
+                    <a href="Editar-Contra.html">
+                        <img src="img/lapiz-editar.png" alt="Editar contraseña" id="contra-editar" class="icono-editar">
+                    </a>
+                </div>
             </section>
 
             <button id="cerrar-sesion" class="sacas-p boton">
@@ -55,7 +61,12 @@
         <div class="modal-caja">
             <p class="modal-consigna">Confirmar contraseña para borrar cuenta</p>
 
-            <input class="modal-input" id="contra-confirmar" type="password" placeholder="Contraseña" autocomplete="off">
+            <div class="control-contrasena-perfil">
+                <input class="modal-input" id="contra-confirmar" type="password" placeholder="Contraseña" autocomplete="off">
+                <button type="button" class="boton-visibilidad-perfil" id="alternar-contra-confirmar" aria-label="Mostrar contraseña" aria-pressed="false">
+                    <img src="img/contrasena-oculta.png" alt="">
+                </button>
+            </div>
 
             <p class="modal-mensaje" id="mensaje-eliminar"></p>
 
@@ -65,8 +76,8 @@
             </div>
         </div>
     </div>
-    <script src="datos.js"></script>
+    <script src="datos.js?v=2"></script>
 
-    <script src="perfil.js"></script>
+    <script src="perfil.js?v=2"></script>
 </body>
 </html>

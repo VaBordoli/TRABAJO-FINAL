@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  configurarVisibilidadContrasena("contra", "alternar-contra");
   const [inputUsuario, inputContra] = document.querySelectorAll(".franquito");
   const botonContinuar = document.querySelector(".enlace-boton-chico");
 

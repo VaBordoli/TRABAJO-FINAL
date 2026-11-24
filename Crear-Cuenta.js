@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  configurarVisibilidadContrasena("contra", "alternar-contra");
   const botonContinuar = document.querySelector(".enlace-boton-chico");
 
   botonContinuar.addEventListener("click", async function (e) {
