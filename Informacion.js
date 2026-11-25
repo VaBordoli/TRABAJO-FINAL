@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const ETIQUETAS_X = {
-    '30s': ['Hace 30 s', 'Hace 20 s', 'Hace 10 s', 'Hace 5 s', 'Ahora'],
+    '25m': ['Hace 25 min', 'Hace 15 min', 'Hace 10 min', 'Hace 5 min', 'Ahora'],
     '7d': ['Hace 7 días', 'Hace 5 días', 'Hace 3 días', 'Hace 24 horas', 'Hace 12 horas']
   };
 
