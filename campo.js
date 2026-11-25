@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('nombre-campo').textContent = parcela;
 
   function mostrar(id, valor) {
-    document.getElementById(id).textContent = valor === null || valor === undefined ? '--' : valor;
+    if (valor === null || valor === undefined) {
+      document.getElementById(id).textContent = '--';
+    } else {
+      document.getElementById(id).textContent = valor;
+    }
   }
 
   async function cargarDatos() {
@@ -31,6 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('boton-circulo').addEventListener('click', () => {
     window.location.href = PAGINAS.home;
+  });
+
+  document.getElementById('boton-historial').addEventListener('click', () => {
+    const nuevos = new URLSearchParams();
+    nuevos.set('id', idCampo);
+    nuevos.set('parcela', parcela);
+    nuevos.set('dispositivo', dispositivo);
+    window.location.href = PAGINAS.historial + '?' + nuevos.toString();
   });
 
   document.getElementById('boton-informacion').addEventListener('click', () => {

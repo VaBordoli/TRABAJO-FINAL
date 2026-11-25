@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar campo</title>
-  <link rel="stylesheet" href="editar.css">
+  <link rel="stylesheet" href="editar.css?v=2">
 </head>
 <body>
   <header class="barra">
@@ -48,10 +48,10 @@
         </div>
         <div class="par-limites">
           <div class="limite">
-            <input type="text" id="humedad-min" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
+            <input type="text" id="humedad-min" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Min." inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="limite">
-            <input type="text" id="humedad-max" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
+            <input type="text" id="humedad-max" class="pildora campo-num" data-sufijo="%" data-max="100" placeholder="Valor Max" inputmode="numeric" autocomplete="off" required>
           </div>
         </div>
 
@@ -61,10 +61,10 @@
         </div>
         <div class="par-limites">
           <div class="limite">
-            <input type="text" id="temperatura-min" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
+            <input type="text" id="temperatura-min" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Min." inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="limite">
-            <input type="text" id="temperatura-max" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
+            <input type="text" id="temperatura-max" class="pildora campo-num" data-sufijo="°C" placeholder="Valor Max" inputmode="numeric" autocomplete="off" required>
           </div>
         </div>
 
@@ -74,10 +74,10 @@
         </div>
         <div class="par-limites">
           <div class="limite">
-            <input type="text" id="corriente-min" class="pildora campo-num" data-sufijo="S" placeholder="Valor Min." inputmode="numeric" autocomplete="off">
+            <input type="text" id="corriente-min" class="pildora campo-num" data-sufijo="S" placeholder="Valor Min." inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="limite">
-            <input type="text" id="corriente-max" class="pildora campo-num" data-sufijo="S" placeholder="Valor Max" inputmode="numeric" autocomplete="off">
+            <input type="text" id="corriente-max" class="pildora campo-num" data-sufijo="S" placeholder="Valor Max" inputmode="numeric" autocomplete="off" required>
           </div>
         </div>
       </section>
@@ -91,7 +91,7 @@
       </button>
     </div>
   </form>
-<script src="datos.js"></script>
-  <script src="editar.js?v=3"></script>
+<script src="datos.js?v=3"></script>
+  <script src="editar.js?v=5"></script>
 </body>
 </html>

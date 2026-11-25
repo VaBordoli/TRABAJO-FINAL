@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
-  // ---------- Lista de campos ----------
   function deseleccionar() {
     document.querySelectorAll('.lista-grande .item-lista').forEach(i => i.classList.remove('seleccionado'));
     primerosTres.forEach(b => b.classList.add('deshabilitado'));
@@ -35,7 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function campoSeleccionado() {
     const li = document.querySelector('.lista-grande .item-lista.seleccionado');
-    return li ? campos.find(c => String(c.id) === li.dataset.id) || null : null;
+    if (!li) {
+      return null;
+    }
+
+    const campo = campos.find(c => String(c.id) === li.dataset.id);
+    if (campo) {
+      return campo;
+    }
+    return null;
   }
 
   function renderizarListaGrande() {
@@ -67,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!listaGrandeEl.contains(e.target)) deseleccionar();
   });
 
-  // ---------- Notificaciones ----------
-  // El back no tiene endpoint para borrarlas: "descartar" se guarda solo en este navegador.
   const claveDescarte = (n) =>
     `Descartada: ${idUsuario}|${n.id_dispositivo}|${n.dia_hora}|${n.variable}|${n.mensaje}`;
 
@@ -78,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     visibles = notificaciones
       .filter(n => !localStorage.getItem(claveDescarte(n)))
-      .reverse(); // las más nuevas primero
+      .reverse();
 
     let html = `
       <li class="item-lista item-encabezado">
@@ -106,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function abrirDetalleNotificacion(notificacion) {
     const detalles = [
-      ['id', notificacion.id],
       ['id_dispositivo', notificacion.id_dispositivo],
       ['dia_hora', notificacion.dia_hora],
       ['variable', notificacion.variable],
@@ -115,7 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     datosNotificacion.innerHTML = detalles.map(([etiqueta, valor]) => {
-      const texto = valor === null || valor === undefined || valor === '' ? '—' : String(valor);
+      let texto;
+      if (valor === null || valor === undefined || valor === '') {
+        texto = '—';
+      } else {
+        texto = String(valor);
+      }
       return `<dt>${etiqueta}</dt><dd>${esc(texto)}</dd>`;
     }).join('');
     elementoFocoAnterior = document.activeElement;
@@ -156,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarNotificaciones();
   }
 
-  // ---------- Botones ----------
   botonAgregar.addEventListener('click', () => {
     window.location.href = PAGINAS.agregar;
   });
@@ -197,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = PAGINAS.perfil;
   });
 
-  // ---------- Inicio ----------
   (async () => {
     try {
       campos = await listarCampos();

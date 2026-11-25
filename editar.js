@@ -1,21 +1,32 @@
-// Pantalla "Editar campo"
 function valorNumerico(input) {
   const n = parseInt(input.value.replace(/\D/g, ''), 10);
-  return isNaN(n) ? 0 : n;
+  if (isNaN(n)) {
+    return 0;
+  }
+  return n;
 }
 function mostrar(input, n) {
-  const max = input.dataset.max ? Number(input.dataset.max) : Infinity;
+  let max = Infinity;
+  if (input.dataset.max) {
+    max = Number(input.dataset.max);
+  }
   n = Math.max(0, Math.min(n, max));
-  input.value = n > 0 ? n + input.dataset.sufijo : '';
+  input.value = n + input.dataset.sufijo;
   return n;
 }
 document.querySelectorAll('.campo-num').forEach(function (input) {
   input.addEventListener('input', function () {
-    const n = mostrar(input, valorNumerico(input));
-    if (n > 0) {
-      const pos = String(n).length;
-      input.setSelectionRange(pos, pos);
+    const texto = input.value.replace(/\D/g, '');
+    if (texto === '') {
+      input.value = '';
+      validarLimites();
+      return;
     }
+
+    const n = mostrar(input, parseInt(texto, 10));
+    const pos = String(n).length;
+    input.setSelectionRange(pos, pos);
+    validarLimites();
   });
 });
 (async function () {
@@ -25,14 +36,16 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
   const params = new URLSearchParams(window.location.search);
   const idCampo = params.get('id');
   const irHome = () => { window.location.href = PAGINAS.home; };
-  if (!idCampo) { irHome(); return; }
+  if (!idCampo) {
+    irHome();
+    return;
+  }
 
   const inputNombre = document.getElementById('nombre-parcela');
   const inputSensor = document.getElementById('nSensor');
   const botonCirculo = document.getElementById('boton-circulo');
   if (botonCirculo) botonCirculo.addEventListener('click', irHome);
 
-  // Datos del campo (nombre y sensor) desde el back
   let campo;
   try {
     campo = (await listarCampos()).find(c => String(c.id) === idCampo);
@@ -40,13 +53,16 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
     alert(err.message);
     return;
   }
-  if (!campo) { alert('El campo no existe'); irHome(); return; }
+  if (!campo) {
+    alert('El campo no existe');
+    irHome();
+    return;
+  }
 
   inputNombre.value = campo.nombre;
   inputSensor.value = campo.id_dispositivo;
-  inputSensor.readOnly = true; // el back no permite cambiar el sensor de un campo
+  inputSensor.readOnly = true;
 
-  // Rangos configurados (corriente del front = conductividad del back)
   const MAPA = [
     ['humedad-min', 'humedad', 'valorminimo'],
     ['humedad-max', 'humedad', 'valormaximo'],
@@ -65,11 +81,20 @@ document.querySelectorAll('.campo-num').forEach(function (input) {
   } catch (err) {
     console.error(err);
   }
+  validarLimites();
 
   document.getElementById('form-editar').addEventListener('submit', async (e) => {
     e.preventDefault();
     const nuevoNombre = inputNombre.value.trim();
-    if (nuevoNombre === '') return;
+    if (nuevoNombre === '') {
+      alert('Completá el nombre del campo');
+      inputNombre.focus();
+      return;
+    }
+    if (!validarLimites()) {
+      e.currentTarget.reportValidity();
+      return;
+    }
     const leer = (id) => valorNumerico(document.getElementById(id));
 
     try {

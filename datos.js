@@ -1,6 +1,5 @@
-// ===== Capa de comunicación con el back (compartida por todas las páginas) =====
 const API_URL = 'http://localhost:3000';
-const MODO_PRUEBA = false; // Cambiar a false para usar las mediciones reales del servidor.
+const MODO_PRUEBA = false;
 const RANGOS_PRUEBA = {
   temperatura: { valorminimo: 0, valormaximo: 40 },
   humedad: { valorminimo: 0, valormaximo: 100 },
@@ -8,19 +7,75 @@ const RANGOS_PRUEBA = {
 };
 const CLAVE_SESION = 'id_usuario';
 
-// Si algún archivo HTML tiene otro nombre, se cambia SOLO acá.
 const PAGINAS = {
   bienvenida: 'Bienvenida.html',
   home: 'Home.html',
   perfil: 'perfil.html',
   campo: 'campo.html',
   informacion: 'Informacion.html',
+  historial: 'Historial.html',
   editar: 'editar.html',
   agregar: 'lista.html'
 };
 
+function validarLimites() {
+  const rangos = [
+    { nombre: 'Humedad', minimo: 'humedad-min', maximo: 'humedad-max' },
+    { nombre: 'Temperatura', minimo: 'temperatura-min', maximo: 'temperatura-max' },
+    { nombre: 'Corriente', minimo: 'corriente-min', maximo: 'corriente-max' }
+  ];
+  let validos = true;
+
+  rangos.forEach(function (rango) {
+    const inputMinimo = document.getElementById(rango.minimo);
+    const inputMaximo = document.getElementById(rango.maximo);
+    const textoMinimo = inputMinimo.value.replace(/\D/g, '');
+    const textoMaximo = inputMaximo.value.replace(/\D/g, '');
+
+    if (textoMinimo === '') {
+      inputMinimo.setCustomValidity('Completá el valor mínimo de ' + rango.nombre.toLowerCase() + '.');
+      validos = false;
+    } else {
+      inputMinimo.setCustomValidity('');
+    }
+    if (textoMaximo === '') {
+      inputMaximo.setCustomValidity('Completá el valor máximo de ' + rango.nombre.toLowerCase() + '.');
+      validos = false;
+    } else {
+      inputMaximo.setCustomValidity('');
+    }
+
+    if (textoMinimo === '' || textoMaximo === '') {
+      return;
+    }
+
+    const valorMinimo = parseInt(textoMinimo, 10);
+    const valorMaximo = parseInt(textoMaximo, 10);
+    if (valorMinimo > valorMaximo) {
+      const unidad = inputMinimo.dataset.sufijo;
+      inputMinimo.setCustomValidity(
+        rango.nombre + ': el valor mínimo (' + valorMinimo + unidad +
+        ') no puede ser mayor que el valor máximo (' + valorMaximo + unidad + ').'
+      );
+      inputMaximo.setCustomValidity(
+        rango.nombre + ': el valor máximo (' + valorMaximo + unidad +
+        ') no puede ser menor que el valor mínimo (' + valorMinimo + unidad + ').'
+      );
+      validos = false;
+    } else {
+      inputMinimo.setCustomValidity('');
+      inputMaximo.setCustomValidity('');
+    }
+  });
+
+  return validos;
+}
+
 async function api(metodo, ruta, { query, body } = {}) {
-  const qs = query ? '?' + new URLSearchParams(query).toString() : '';
+  let qs = '';
+  if (query) {
+    qs = '?' + new URLSearchParams(query).toString();
+  }
   const opciones = { method: metodo, headers: {} };
   if (body !== undefined) {
     opciones.headers['Content-Type'] = 'application/json';
@@ -33,7 +88,11 @@ async function api(metodo, ruta, { query, body } = {}) {
     throw new Error('No se pudo conectar con el servidor');
   }
   let datos = null;
-  try { datos = await respuesta.json(); } catch (e) { /* sin cuerpo JSON */ }
+  try {
+    datos = await respuesta.json();
+  } catch (e) {
+    console.error('La respuesta del servidor no tiene un formato JSON válido', e);
+  }
   if (!respuesta.ok) {
     const error = new Error((datos && datos.message) || 'Error HTTP ' + respuesta.status);
     error.status = respuesta.status;
@@ -42,11 +101,13 @@ async function api(metodo, ruta, { query, body } = {}) {
   return datos;
 }
 
-// ---- Sesión (el back no usa tokens: solo devuelve id_usuario) ----
 function guardarSesion(id) { localStorage.setItem(CLAVE_SESION, String(id)); }
 function obtenerIdUsuario() {
   const n = Number(localStorage.getItem(CLAVE_SESION));
-  return n > 0 ? n : null;
+  if (n > 0) {
+    return n;
+  }
+  return null;
 }
 function configurarVisibilidadContrasena(idEntrada, idBoton) {
   const entrada = document.getElementById(idEntrada);
@@ -63,20 +124,35 @@ function configurarVisibilidadContrasena(idEntrada, idBoton) {
   ocultar();
   boton.addEventListener('click', () => {
     const mostrar = entrada.type === 'password';
-    entrada.type = mostrar ? 'text' : 'password';
-    boton.setAttribute('aria-label', mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    if (mostrar) {
+      entrada.type = 'text';
+      boton.setAttribute('aria-label', 'Ocultar contraseña');
+    } else {
+      entrada.type = 'password';
+      boton.setAttribute('aria-label', 'Mostrar contraseña');
+    }
     boton.setAttribute('aria-pressed', String(mostrar));
-    icono.src = mostrar ? 'img/contrasena-visible.png' : 'img/contrasena-oculta.png';
+    if (mostrar) {
+      icono.src = 'img/contrasena-visible.png';
+    } else {
+      icono.src = 'img/contrasena-oculta.png';
+    }
   });
   return ocultar;
 }
 function valorDePrueba(tipo) {
-  const clave = tipo === 'corriente' ? 'conductividad' : tipo;
+  let clave = tipo;
+  if (tipo === 'corriente') {
+    clave = 'conductividad';
+  }
   const { valorminimo, valormaximo } = RANGOS_PRUEBA[clave];
   return Number((valorminimo + Math.random() * (valormaximo - valorminimo)).toFixed(1));
 }
 function historialDePrueba(tipo) {
-  const clave = tipo === 'corriente' ? 'conductividad' : tipo;
+  let clave = tipo;
+  if (tipo === 'corriente') {
+    clave = 'conductividad';
+  }
   const { valorminimo, valormaximo } = RANGOS_PRUEBA[clave];
   const amplitud = valormaximo - valorminimo;
   const valores = Array.from({ length: 5 }, (_, i) => {
@@ -104,7 +180,6 @@ async function cerrarSesion() {
   window.location.href = PAGINAS.bienvenida;
 }
 
-// ---- Campos ----
 async function listarCampos() {
   const r = await api('GET', '/api/campos', { query: { id_usuario: obtenerIdUsuario() } });
   return r.campos;
@@ -113,15 +188,13 @@ async function pedirRangos(idCampo) {
   try {
     const r = await api('GET', `/api/campos/${idCampo}/valores-predeterminados`,
       { query: { id_usuario: obtenerIdUsuario() } });
-    return r.valores; // { humedad:{valorminimo,valormaximo}, temperatura:{...}, conductividad:{...} }
+    return r.valores;
   } catch (e) {
     if (e.status === 404) return null;
     throw e;
   }
 }
 
-// ---- Sensores ----
-// "corriente" en el front = "conductividad" en el back
 async function pedirValorActual(dispositivo) {
   if (MODO_PRUEBA) {
     return {
@@ -141,50 +214,83 @@ async function pedirValorActual(dispositivo) {
   }
 }
 
-// Devuelve 5 valores (promedios por tramo) para el gráfico de Información.
-// tipo: 'temperatura' | 'humedad' | 'corriente'; rango: '30s' | '7d'. null = sin datos en ese tramo.
-async function pedirHistorial(dispositivo, tipo, rango) {
-  if (MODO_PRUEBA) return historialDePrueba(tipo);
+async function pedirMedicionesHistoricas(dispositivo) {
   const r = await api('GET', `/api/sensores/${encodeURIComponent(dispositivo)}/datos`,
     { query: { id_usuario: obtenerIdUsuario() } });
-  const clave = tipo === 'corriente' ? 'conductividad' : tipo;
+  return r.datos;
+}
+
+async function pedirHistorial(dispositivo, tipo, rango) {
+  if (MODO_PRUEBA) return historialDePrueba(tipo);
+  const datos = await pedirMedicionesHistoricas(dispositivo);
+  let clave = tipo;
+  if (tipo === 'corriente') {
+    clave = 'conductividad';
+  }
   const dia = 24 * 3600 * 1000;
-  const edades = rango === '30s'
-    ? [30_000, 20_000, 10_000, 5_000, 0]
-    : [7 * dia, 5 * dia, 3 * dia, dia, 12 * 3600 * 1000];
+  let edades;
+  if (rango === '30s') {
+    edades = [30_000, 20_000, 10_000, 5_000, 0];
+  } else {
+    edades = [7 * dia, 5 * dia, 3 * dia, dia, 12 * 3600 * 1000];
+  }
   const ventana = edades[0];
   const ahora = Date.now();
   const inicio = ahora - ventana;
   const puntos = edades.map(edad => ahora - edad);
-  const tramos = puntos.map((punto, i) => ({
-    inicio: i === 0 ? inicio : (puntos[i - 1] + punto) / 2,
-    fin: i === puntos.length - 1 ? ahora + 1 : (punto + puntos[i + 1]) / 2
-  }));
+  const tramos = puntos.map((punto, i) => {
+    let inicioTramo = inicio;
+    if (i > 0) {
+      inicioTramo = (puntos[i - 1] + punto) / 2;
+    }
+
+    let finTramo = ahora + 1;
+    if (i < puntos.length - 1) {
+      finTramo = (punto + puntos[i + 1]) / 2;
+    }
+
+    return { inicio: inicioTramo, fin: finTramo };
+  });
   const sumas = Array(5).fill(0);
   const cuentas = Array(5).fill(0);
-  r.datos.forEach(d => {
-    const t = typeof d.dia_hora === 'number' ? d.dia_hora : new Date(d.dia_hora).getTime();
+  datos.forEach(d => {
+    let t;
+    if (typeof d.dia_hora === 'number') {
+      t = d.dia_hora;
+    } else {
+      t = new Date(d.dia_hora).getTime();
+    }
     const original = d.medidas_tierras && d.medidas_tierras[clave];
     const v = Number(original);
     if (original === null || original === undefined || original === '' ||
         !Number.isFinite(t) || !Number.isFinite(v) || t < inicio || t > ahora + 5 * 60 * 1000) return;
     const tiempo = Math.min(t, ahora);
-    const i = tramos.findIndex((tramo, indice) =>
-      tiempo >= tramo.inicio && (indice === tramos.length - 1 ? tiempo <= tramo.fin : tiempo < tramo.fin));
+    const i = tramos.findIndex((tramo, indice) => {
+      if (tiempo < tramo.inicio) {
+        return false;
+      }
+      if (indice === tramos.length - 1) {
+        return tiempo <= tramo.fin;
+      }
+      return tiempo < tramo.fin;
+    });
     if (i < 0) return;
     sumas[i] += v;
     cuentas[i]++;
   });
-  return sumas.map((s, i) => cuentas[i] ? s / cuentas[i] : null);
+  return sumas.map((s, i) => {
+    if (cuentas[i] > 0) {
+      return s / cuentas[i];
+    }
+    return null;
+  });
 }
 
-// ---- Notificaciones ----
 async function pedirNotificaciones() {
   const r = await api('GET', '/api/notificaciones', { query: { id_usuario: obtenerIdUsuario() } });
   return r.notificaciones;
 }
 
-// ---- Pantallas Editar-Nombre / Editar-Mail / Editar-Contra ----
 function configurarEdicionUsuario({ dato, idNuevo, idConfirmar, idContraActual }) {
   const idUsuario = requerirSesion();
   if (!idUsuario) return;
@@ -195,7 +301,6 @@ function configurarEdicionUsuario({ dato, idNuevo, idConfirmar, idContraActual }
   });
   document.getElementById('cerrar-sesion').addEventListener('click', cerrarSesion);
 
-  // el <a href="Home.html"> navegaba sin guardar: se frena y se hace el PUT
   document.getElementById('link-regresar').addEventListener('click', async (e) => {
     e.preventDefault();
     const nuevo = leer(idNuevo);

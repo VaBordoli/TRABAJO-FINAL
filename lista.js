@@ -1,21 +1,32 @@
-// Pantalla "Agregar campo"
 function valorNumerico(input) {
   const n = parseInt(input.value.replace(/\D/g, ''), 10);
-  return isNaN(n) ? 0 : n;
+  if (isNaN(n)) {
+    return 0;
+  }
+  return n;
 }
 function mostrar(input, n) {
-  const max = input.dataset.max ? Number(input.dataset.max) : Infinity;
+  let max = Infinity;
+  if (input.dataset.max) {
+    max = Number(input.dataset.max);
+  }
   n = Math.max(0, Math.min(n, max));
-  input.value = n > 0 ? n + input.dataset.sufijo : '';
+  input.value = n + input.dataset.sufijo;
   return n;
 }
 document.querySelectorAll('.campo-num').forEach(function (input) {
   input.addEventListener('input', function () {
-    const n = mostrar(input, valorNumerico(input));
-    if (n > 0) {
-      const pos = String(n).length;
-      input.setSelectionRange(pos, pos);
+    const texto = input.value.replace(/\D/g, '');
+    if (texto === '') {
+      input.value = '';
+      validarLimites();
+      return;
     }
+
+    const n = mostrar(input, parseInt(texto, 10));
+    const pos = String(n).length;
+    input.setSelectionRange(pos, pos);
+    validarLimites();
   });
 });
 const idUsuario = requerirSesion();
@@ -23,6 +34,10 @@ const form = document.getElementById('form-agregar');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!idUsuario) return;
+  if (!validarLimites()) {
+    form.reportValidity();
+    return;
+  }
 
   const leer = (id) => valorNumerico(document.getElementById(id));
   const nombre = document.getElementById('nombre-parcela').value.trim();
@@ -32,8 +47,6 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  // "corriente" del front = "conductividad" del back.
-  // Los "valores actuales" ya no se guardan: los trae el sensor.
   const body = {
     id_usuario: idUsuario,
     nombre: nombre,

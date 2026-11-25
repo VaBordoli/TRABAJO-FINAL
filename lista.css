@@ -169,7 +169,6 @@
     background: var(--color-campo-texto);
   }
   
-  /* Lista izquierda */
   .lista-izq .item-lista:nth-child(2) { --y: 38.1%; }
   .lista-izq .item-lista:nth-child(2) .marca { 
     left: 23.6%; 
@@ -188,12 +187,12 @@
   .lista-izq .item-lista:nth-child(3) .marca-chica { left: 67.49%; width: 3.45%; }
   .lista-izq .item-lista:nth-child(3) .marca-chica + .marca-chica { left: 74.38%; }
   
-  .lista-der .item-lista:nth-child(2) { --y: 26%; }  /* Humedad */
-  .lista-der .item-lista:nth-child(3) { --y: 37%; }  /* Humedad min/max */
-  .lista-der .item-lista:nth-child(4) { --y: 49%; }  /* Temperatura */
-  .lista-der .item-lista:nth-child(5) { --y: 60%; }  /* Temperatura min/max */
-  .lista-der .item-lista:nth-child(6) { --y: 72%; }  /* Corriente */
-  .lista-der .item-lista:nth-child(7) { --y: 83%; }  /* Corriente min/max */
+  .lista-der .item-lista:nth-child(2) { --y: 26%; }
+  .lista-der .item-lista:nth-child(3) { --y: 37%; }
+  .lista-der .item-lista:nth-child(4) { --y: 49%; }
+  .lista-der .item-lista:nth-child(5) { --y: 60%; }
+  .lista-der .item-lista:nth-child(6) { --y: 72%; }
+  .lista-der .item-lista:nth-child(7) { --y: 83%; }
 
   .enlace-boton {
     position: absolute;
@@ -257,6 +256,10 @@
     outline: none;
   }
   
+  .campo-num:invalid {
+    outline: 2px solid #b3261e;
+  }
+
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;

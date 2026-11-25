@@ -80,6 +80,7 @@ body { background: #e8e8e8; min-height: 100vh; }
 }
 .pildora::placeholder { color: #777; }
 .pildora:focus { box-shadow: 0 0 0 2px #7a7a7a; }
+.pildora.campo-num:invalid { box-shadow: 0 0 0 2px #b3261e; }
 
 .pildora[readonly] { cursor: not-allowed; color: #555; }
 .etiqueta-valor { cursor: default; color: #555; }

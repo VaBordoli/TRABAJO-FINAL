@@ -6,12 +6,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inputMail = document.getElementById('mail-usuario');
   const inputContra = document.getElementById('contra-usuario');
 
-  // Son solo de lectura: se cambian desde las pantallas Editar-*
   inputNombre.readOnly = true;
   inputMail.readOnly = true;
   inputContra.readOnly = true;
   inputContra.value = '';
-  inputContra.placeholder = '••••••••'; // el back nunca devuelve la contraseña
+  inputContra.placeholder = '••••••••';
 
   document.getElementById('boton-circulo').addEventListener('click', () => {
     window.location.href = PAGINAS.home;
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (err.status === 404) cerrarSesion();
   }
 
-  // ---- Eliminar cuenta: pop-up de confirmación ----
   const botonEliminar = document.getElementById('eliminar-cuenta');
   const modal = document.getElementById('modal-eliminar');
   const inputConfirmar = document.getElementById('contra-confirmar');
@@ -71,7 +69,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       localStorage.removeItem(CLAVE_SESION);
       window.location.href = PAGINAS.bienvenida;
     } catch (err) {
-      mensaje.textContent = err.status === 401 ? 'La contraseña no coincide' : err.message;
+      if (err.status === 401) {
+        mensaje.textContent = 'La contraseña no coincide';
+      } else {
+        mensaje.textContent = err.message;
+      }
     }
   });
 });

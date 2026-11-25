@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historial de mediciones</title>
+  <link rel="stylesheet" href="Historial.css?v=1">
+</head>
+<body>
+  <div class="ventana">
+    <header class="barra-titulo">
+      <button type="button" class="circulo" id="boton-regresar" aria-label="Volver al campo">
+        <img src="img/logo.png" alt="Logo">
+      </button>
+    </header>
+
+    <main class="contenido">
+      <h1 class="campo-texto" id="titulo-historial"></h1>
+
+      <section class="panel-historial" aria-label="Mediciones históricas">
+        <p class="estado" id="estado-historial" role="status">Cargando mediciones...</p>
+        <div class="tabla-contenedor" id="tabla-contenedor" hidden>
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Humedad</th>
+                <th scope="col">Corriente</th>
+              </tr>
+            </thead>
+            <tbody id="filas-historial"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="datos.js?v=9"></script>
+  <script src="Historial.js?v=1"></script>
+</body>
+</html>

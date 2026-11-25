@@ -97,6 +97,11 @@
     text-align: left;
   }
 
+  input[type="password"]::-webkit-caps-lock-indicator {
+    display: none !important;
+    visibility: hidden;
+  }
+
   .boton-visibilidad {
     position: absolute;
     top: 50%;

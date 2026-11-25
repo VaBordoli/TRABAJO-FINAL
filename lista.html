@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pantalla de listas</title>
-  <link rel="stylesheet" href="lista.css">
+  <link rel="stylesheet" href="lista.css?v=2">
 </head>
 <body>
   <form id="form-agregar" class="ventana">
@@ -27,7 +27,7 @@
       </li>
       <li class="item-lista">
         <div class="marca"></div>
-        <input class="linea" id="nSensor" type="text" placeholder="Nombre de Sensor">
+        <input class="linea" id="nSensor" type="text" placeholder="Nombre de Sensor" required>
       </li>
     </ul>
 
@@ -36,7 +36,6 @@
         <div class="linea">Valores Predeterminados</div>
       </li>
 
-      <!-- Humedad -->
       <li class="item-lista">
         <div class="marca"></div>
         <div class="linea etiqueta-valor">Humedad</div>
@@ -44,13 +43,12 @@
 
       <li class="item-lista">
         <input class="linea linea-mm mm-izq campo-num" id="humedad-min" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="%" data-max="100" placeholder="Valor Min.">
+               data-sufijo="%" data-max="100" placeholder="Valor Min." required>
 
         <input class="linea linea-mm mm-der campo-num" id="humedad-max" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="%" data-max="100" placeholder="Valor Max">
+               data-sufijo="%" data-max="100" placeholder="Valor Max" required>
       </li>
 
-      <!-- Temperatura -->
       <li class="item-lista">
         <div class="marca"></div>
         <div class="linea etiqueta-valor">Temperatura</div>
@@ -58,13 +56,12 @@
 
       <li class="item-lista">
         <input class="linea linea-mm mm-izq campo-num" id="temperatura-min" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="°C" placeholder="Valor Min.">
+               data-sufijo="°C" placeholder="Valor Min." required>
 
         <input class="linea linea-mm mm-der campo-num" id="temperatura-max" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="°C" placeholder="Valor Max">
+               data-sufijo="°C" placeholder="Valor Max" required>
       </li>
 
-      <!-- Corriente eléctrica -->
       <li class="item-lista">
         <div class="marca"></div>
         <div class="linea etiqueta-valor">Corriente</div>
@@ -72,10 +69,10 @@
 
       <li class="item-lista">
         <input class="linea linea-mm mm-izq campo-num" id="corriente-min" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="S" placeholder="Valor Min.">
+               data-sufijo="S" placeholder="Valor Min." required>
 
         <input class="linea linea-mm mm-der campo-num" id="corriente-max" type="text" inputmode="numeric" autocomplete="off"
-               data-sufijo="S" placeholder="Valor Max">
+               data-sufijo="S" placeholder="Valor Max" required>
       </li>
     </ul>
 
@@ -87,7 +84,7 @@
     </button>
 
   </form>
-<script src="datos.js"></script>
-  <script src="lista.js?v=2"></script>
+<script src="datos.js?v=3"></script>
+  <script src="lista.js?v=4"></script>
 </body>
 </html>

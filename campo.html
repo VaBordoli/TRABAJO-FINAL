@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Campo</title>
-  <link rel="stylesheet" href="campo.css">
+  <link rel="stylesheet" href="campo.css?v=2">
 </head>
 <body>
 
@@ -20,10 +20,8 @@
       <div class="campo-texto">Campo “<span id="nombre-campo"></span>”</div>
 
       <div class="fila-pastillas">
-        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
-        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
-        <button type="button" class="pastilla"><div class="riel"></div><div class="punto"></div></button>
-        <button type="button" class="pastilla" id="boton-informacion"><div class="riel"></div><div class="punto"></div></button>
+        <button type="button" class="pastilla" id="boton-historial" aria-label="Ver historial"><div class="riel"></div><div class="punto"></div></button>
+        <button type="button" class="pastilla" id="boton-informacion" aria-label="Ver gráfico"><div class="riel"></div><div class="punto"></div></button>
       </div>
 
       <div class="fila-tarjetas">
@@ -44,7 +42,7 @@
     </div>
   </div>
 
-  <script src="datos.js"></script>
-  <script src="campo.js"></script>
+  <script src="datos.js?v=9"></script>
+  <script src="campo.js?v=2"></script>
 </body>
 </html>

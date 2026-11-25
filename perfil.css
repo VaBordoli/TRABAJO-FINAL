@@ -17,7 +17,6 @@
   --color-c-pildora: #a8a5a5;
   --color-pildora-seleccion: #BCBCBC;
 
-  /* gris del pop-up: oscuro. Para versión clara probá #c4c4c4 */
   --color-modal: #7a7a7a;
 }
 
@@ -175,7 +174,6 @@ html, body {
   cursor: pointer;
 }
 
-/* ---------- Botón eliminar cuenta ---------- */
 .eliminar-cuenta {
   position: absolute;
   top: 71%;
@@ -192,7 +190,6 @@ html, body {
   display: block;
 }
 
-/* ---------- Pop-up confirmar contraseña ---------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -203,7 +200,6 @@ html, body {
   z-index: 100;
 }
 
-/* necesario para que el atributo hidden funcione con display:flex */
 .modal-overlay[hidden] {
   display: none;
 }
@@ -268,6 +264,11 @@ html, body {
   margin: 0;
   padding: 0 44px 0 3%;
   text-align: left;
+}
+
+input[type="password"]::-webkit-caps-lock-indicator {
+  display: none !important;
+  visibility: hidden;
 }
 
 .boton-visibilidad-perfil {

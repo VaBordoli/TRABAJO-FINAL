@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const estado = { tipo: 'temperatura', rango: '30s' };
   let numeroPedido = 0;
-  let rangos = null; // límites configurados en el back
+  let rangos = null;
 
   const canvas = document.getElementById('grafico');
   const mensaje = document.getElementById('mensaje-grafico');
@@ -56,9 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const leer = (n) => {
       if (n === null || n === undefined || n === '') return null;
       const valor = Number(n);
-      return Number.isFinite(valor) ? valor : null;
+      if (Number.isFinite(valor)) {
+        return valor;
+      }
+      return null;
     };
-    return r ? { min: leer(r.valorminimo), max: leer(r.valormaximo) } : { min: null, max: null };
+    if (r) {
+      return { min: leer(r.valorminimo), max: leer(r.valormaximo) };
+    }
+    return { min: null, max: null };
   }
 
   const fondoGrafico = {
@@ -203,7 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!hayLimites) avisos.push('No se pudieron cargar los límites; verificá el campo y la sesión');
       mensajeRangos.textContent = avisos.join(' | ');
       mensajeRangos.hidden = avisos.length === 0;
-      mensaje.textContent = hayDatos ? '' : 'No hay mediciones en el período seleccionado';
+      if (hayDatos) {
+        mensaje.textContent = '';
+      } else {
+        mensaje.textContent = 'No hay mediciones en el período seleccionado';
+      }
       mensaje.hidden = hayDatos;
       dibujar(valores);
     } catch (error) {
@@ -225,10 +235,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grafico.data.labels = etiquetasX;
     grafico.data.datasets[0].data = valores;
-    grafico.data.datasets[1].data = etiquetasX.map(() =>
-      limites.max === null ? null : limitar(limites.max));
-    grafico.data.datasets[2].data = etiquetasX.map(() =>
-      limites.min === null ? null : limitar(limites.min));
+    grafico.data.datasets[1].data = etiquetasX.map(() => {
+      if (limites.max === null) {
+        return null;
+      }
+      return limitar(limites.max);
+    });
+    grafico.data.datasets[2].data = etiquetasX.map(() => {
+      if (limites.min === null) {
+        return null;
+      }
+      return limitar(limites.min);
+    });
     grafico.options.scales.y.min = minEje;
     grafico.options.scales.y.max = maxEje;
     grafico.options.scales.y.ticks.stepSize = niveles[1] - niveles[0];
@@ -240,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarDatos();
   if (INTERVALO_REFRESCO_MS > 0) setInterval(cargarDatos, INTERVALO_REFRESCO_MS);
 
-  // volver a la pantalla del campo (si el botón tiene id; si no, el <a> ya vuelve a Home)
   const botonCirculo = document.getElementById('boton-circulo');
   if (botonCirculo) {
     botonCirculo.addEventListener('click', () => {
